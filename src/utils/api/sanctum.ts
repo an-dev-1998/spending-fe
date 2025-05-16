@@ -14,6 +14,7 @@ export const fetchSanctumCsrfToken = async (): Promise<void> => {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Accept': 'application/json',
+        'Origin': window.location.origin,
       }
     });
   } catch (error) {

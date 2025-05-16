@@ -10,6 +10,7 @@ export const apiClient = axios.create({
     'Content-Type': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
     'Accept': 'application/json',
+    'Origin': window.location.origin,
   },
   withCredentials: true, // Important for Laravel Sanctum to work with cookies
   timeout: 10000, // 10 seconds
