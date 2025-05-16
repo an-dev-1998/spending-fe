@@ -37,7 +37,7 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
       onOk={handleSubmit}
       destroyOnClose
     >
-      <CategoryForm form={form} type="create" />
+      <CategoryForm form={form} />
     </Modal>
   );
 };

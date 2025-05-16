@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
-import { Form, Input } from 'antd';
+import { Form, Input, FormInstance } from 'antd';
 import { Category } from '../../utils/api';
 
 interface CategoryFormProps {
-  form: any;
+  form: FormInstance;
   initialValues?: Partial<Category>;
-  type: 'create' | 'edit';
 }
 
-const CategoryForm: React.FC<CategoryFormProps> = ({ form, initialValues, type }) => {
+const CategoryForm: React.FC<CategoryFormProps> = ({ form, initialValues }) => {
   // Update form values when initialValues change
   useEffect(() => {
     if (initialValues) {

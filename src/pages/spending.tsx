@@ -134,7 +134,6 @@ const SpendingPage: React.FC = () => {
         visible={isDeleteModalOpen}
         onClose={handleCloseDelete}
         onConfirm={handleConfirmDelete}
-        id={selectedSpending?.id}
         itemName={selectedSpending?.name}
         title={t('spending.deleteTitle')}
       />

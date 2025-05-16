@@ -134,7 +134,6 @@ const CategoryPage: React.FC = () => {
         visible={isDeleteModalOpen}
         onClose={handleCloseDelete}
         onConfirm={handleConfirmDelete}
-        id={selectedCategory?.id}
         itemName={selectedCategory?.name}
         title={t('category.deleteTitle')}
       />

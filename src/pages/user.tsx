@@ -130,7 +130,6 @@ const UserPage: React.FC = () => {
         visible={isDeleteModalOpen}
         onClose={handleCloseDelete}
         onConfirm={handleConfirmDelete}
-        id={selectedUser?.id}
         itemName={selectedUser?.name}
         title={t('user.deleteTitle')}
       />

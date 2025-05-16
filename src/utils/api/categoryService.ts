@@ -1,4 +1,4 @@
-import { apiService, PaginatedResponse, ApiResponse } from './apiService';
+import { apiService, PaginatedResponse } from './apiService';
 
 // Category interface
 export interface Category {

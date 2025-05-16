@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Button, Typography, Space, Avatar, Dropdown } from 'antd';
-import { UserOutlined, BellOutlined, SettingOutlined } from '@ant-design/icons';
+import { UserOutlined, BellOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import LanguageSwitcher from '../common/LanguageSwitch';
 const { Header } = Layout;

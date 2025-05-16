@@ -8,14 +8,13 @@ import { useTranslation } from 'react-i18next';
 interface SpendingFormProps {
   form: any;
   initialValues?: Partial<Spending>;
-  type: 'create' | 'edit';
 }
 
 interface Category {
   id: number;
   name: string;
 }
-const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues, type }) => {
+const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
   const { t } = useTranslation();
   
   const [categories, setCategories] = useState<Category[]>([]);

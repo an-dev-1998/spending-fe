@@ -50,7 +50,7 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
       onOk={handleSubmit}
       destroyOnClose
     >
-      <CategoryForm form={form} initialValues={category || undefined} type="edit" />
+      <CategoryForm form={form} initialValues={category || undefined} />
     </Modal>
   );
 };

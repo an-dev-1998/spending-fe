@@ -37,7 +37,7 @@ const CreateSpendingModal: React.FC<CreateSpendingModalProps> = ({
       onOk={handleSubmit}
       destroyOnClose
     >
-      <SpendingForm form={form} type="create" />
+      <SpendingForm form={form} />
     </Modal>
   );
 };

@@ -52,7 +52,7 @@ const EditSpendingModal: React.FC<EditSpendingModalProps> = ({
       onOk={handleSubmit}
       destroyOnClose
     >
-      <SpendingForm form={form} initialValues={spending || undefined} type="edit" />
+      <SpendingForm form={form} initialValues={spending || undefined} />
     </Modal>
   );
 };

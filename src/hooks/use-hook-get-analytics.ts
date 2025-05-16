@@ -16,11 +16,6 @@ interface AnalyticsData {
   category: Category;
 }
 
-interface PieData {
-  type: string;
-  value: number;
-}
-
 export const useGetAnalytics = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<AnalyticsData[]>([]);
