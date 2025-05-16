@@ -1,0 +1,114 @@
+{
+    "dashboard": {
+      "title": "Bảng điều khiển"
+    },
+    "analytics": {
+      "title": "Phân tích"
+    },
+    "reports": "Báo cáo",
+    "settings": {
+      "title": "Cài đặt",
+      "notifications": "Bật thông báo",
+      "darkMode": "Chế độ tối",
+      "language": "Ngôn ngữ",
+      "save": "Lưu thay đổi",
+      "reset": "Đặt lại",
+      "saveSuccess": "Lưu cài đặt thành công"
+    },
+    "spendings": "Chi tiêu",
+    "categories": "Danh mục",
+    "login": {
+      "welcomeBack": "Chào mừng trở lại",
+      "pleaseSignIn": "Vui lòng đăng nhập để tiếp tục",
+      "emailRequired": "Vui lòng nhập email",
+      "emailInvalid": "Vui lòng nhập email hợp lệ",
+      "email": "Email",
+      "passwordRequired": "Vui lòng nhập mật khẩu",
+      "password": "Mật khẩu",
+      "dontHaveAccount": "Chưa có tài khoản?",
+      "registerHere": "Đăng ký tại đây",
+      "signIn": "Đăng nhập",
+      "success": "Đăng nhập thành công",
+      "failed": "Đăng nhập thất bại",
+      "invalidResponse": "Phản hồi không hợp lệ từ máy chủ"
+    },
+    "register": {
+      "success": "Đăng ký thành công",
+      "failed": "Đăng ký thất bại",
+      "passwordConfirmationRequired": "Vui lòng xác nhận mật khẩu",
+      "passwordMismatch": "Mật khẩu không khớp",
+      "passwordConfirmation": "Xác nhận mật khẩu",
+      "register": "Đăng ký",
+      "alreadyHaveAccount": "Đã có tài khoản?",
+      "login": "Đăng nhập"
+    },
+    "user": {
+      "title": "Người dùng",
+      "name": "Tên",
+      "email": "Email",
+      "createdAt": "Ngày tạo",
+      "updatedAt": "Ngày cập nhật",
+      "create": "Tạo người dùng",
+      "action": "Thao tác"
+    },
+    "spending": {
+      "title": "Chi tiêu",
+      "categoryId": "Danh mục",
+      "categoryIdRequired": "Vui lòng chọn danh mục",
+      "selectSpendingName": "Chọn danh mục chi tiêu",
+      "description": "Mô tả",
+      "amount": "Số tiền",
+      "amountRequired": "Vui lòng nhập số tiền",
+      "enterAmount": "Nhập số tiền",
+      "createSuccess": "Tạo chi tiêu thành công",
+      "createError": "Tạo chi tiêu thất bại",
+      "createTitle": "Tạo chi tiêu",
+      "updateSuccess": "Cập nhật chi tiêu thành công",
+      "updateError": "Cập nhật chi tiêu thất bại",
+      "editTitle": "Chỉnh sửa chi tiêu",
+      "deleteTitle": "Xóa chi tiêu",
+      "deleteSuccess": "Xóa chi tiêu thành công",
+      "deleteFailed": "Xóa chi tiêu thất bại",
+      "create": "Tạo chi tiêu",
+      "createdAt": "Ngày tạo",
+      "updatedAt": "Ngày cập nhật",
+      "action": "Thao tác",
+      "date": "Ngày"
+    },
+    "setting": {
+      "title": "Đổi mật khẩu",
+      "changePassword": "Đổi mật khẩu",
+      "currentPassword": "Mật khẩu hiện tại",
+      "currentPasswordRequired": "Vui lòng nhập mật khẩu hiện tại",
+      "newPassword": "Mật khẩu mới",
+      "newPasswordRequired": "Vui lòng nhập mật khẩu mới",
+      "passwordMinLength": "Mật khẩu phải có ít nhất 8 ký tự",
+      "confirmNewPassword": "Xác nhận mật khẩu mới",
+      "confirmNewPasswordRequired": "Vui lòng xác nhận mật khẩu mới",
+      "passwordMismatch": "Hai mật khẩu không khớp",
+      "passwordChangedSuccess": "Đổi mật khẩu thành công",
+      "passwordChangeFailed": "Đổi mật khẩu thất bại"
+    },
+    "category": {
+      "title": "Danh mục",
+      "name": "Tên",
+      "description": "Mô tả",
+      "createdAt": "Ngày tạo",
+      "updatedAt": "Ngày cập nhật",
+      "action": "Thao tác",
+      "create": "Tạo danh mục",
+      "createTitle": "Tạo danh mục",
+      "editTitle": "Chỉnh sửa danh mục",
+      "deleteTitle": "Xóa danh mục",
+      "createSuccess": "Tạo danh mục thành công",
+      "createError": "Tạo danh mục thất bại",
+      "updateSuccess": "Cập nhật danh mục thành công",
+      "updateError": "Cập nhật danh mục thất bại",
+      "deleteSuccess": "Xóa danh mục thành công",
+      "deleteFailed": "Xóa danh mục thất bại",
+      "nameRequired": "Vui lòng nhập tên danh mục",
+      "nameLabel": "Tên",
+      "descriptionLabel": "Mô tả"
+    }
+  }
+  

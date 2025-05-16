@@ -1,0 +1,113 @@
+{
+    "dashboard": {
+        "title": "Dashboard"
+    },
+    "analytics": {
+        "title": "Analytics"
+    },
+    "reports": "Reports",
+    "settings": {
+        "title": "Settings",
+        "notifications": "Enable Notifications",
+        "darkMode": "Dark Mode",
+        "language": "Language",
+        "save": "Save Changes",
+        "reset": "Reset",
+        "saveSuccess": "Settings saved successfully"
+    },
+    "spendings": "Spendings",
+    "categories": "Categories",
+    "login": {
+        "welcomeBack": "Welcome Back",
+        "pleaseSignIn": "Please sign in to continue",
+        "emailRequired": "Please input your email",
+        "emailInvalid": "Please enter a valid email",
+        "email": "Email",
+        "passwordRequired": "Please input your password",
+        "password": "Password",
+        "dontHaveAccount": "Don't have an account?",
+        "registerHere": "Register here",
+        "signIn": "Sign In",
+        "success": "Login successful",
+        "failed": "Login failed",
+        "invalidResponse": "Invalid response from server"
+    },
+    "register": {
+        "success": "Registration successful",
+        "failed": "Registration failed",
+        "passwordConfirmationRequired": "Please confirm your password",
+        "passwordMismatch": "Passwords do not match",
+        "passwordConfirmation": "Confirm Password",
+        "register": "Register",
+        "alreadyHaveAccount": "Already have an account?",
+        "login": "Login"
+    },
+    "user": {
+        "title": "Users",
+        "name": "Name",
+        "email": "Email",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "create": "Create User",
+        "action": "Action"
+    },
+    "spending": {
+        "title": "Spendings",
+        "categoryId": "Category",
+        "categoryIdRequired": "Please select a category",
+        "selectSpendingName": "Select spending category",
+        "description": "Description",
+        "amount": "Amount",
+        "amountRequired": "Please enter an amount",
+        "enterAmount": "Enter amount",
+        "createSuccess": "Spending created successfully",
+        "createError": "Failed to create spending",
+        "createTitle": "Create Spending",
+        "updateSuccess": "Spending updated successfully",
+        "updateError": "Failed to update spending",
+        "editTitle": "Edit Spending",
+        "deleteTitle": "Delete Spending",
+        "deleteSuccess": "Spending deleted successfully",
+        "deleteFailed": "Failed to delete spending",
+        "create": "Create Spending",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "action": "Action",
+        "date": "Date"
+    },
+    "setting": {
+        "title": "Change Password",
+        "changePassword": "Change Password",
+        "currentPassword": "Current Password",
+        "currentPasswordRequired": "Please input your current password",
+        "newPassword": "New Password",
+        "newPasswordRequired": "Please input your new password",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "confirmNewPassword": "Confirm New Password",
+        "confirmNewPasswordRequired": "Please confirm your new password",
+        "passwordMismatch": "The two passwords do not match",
+        "passwordChangedSuccess": "Password changed successfully",
+        "passwordChangeFailed": "Failed to change password"
+    },
+    "category": {
+        "title": "Categories",
+        "name": "Name",
+        "description": "Description",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "action": "Action",
+        "create": "Create Category",
+        "createTitle": "Create Category",
+        "editTitle": "Edit Category",
+        "deleteTitle": "Delete Category",
+        "createSuccess": "Category created successfully",
+        "createError": "Failed to create category",
+        "updateSuccess": "Category updated successfully",
+        "updateError": "Failed to update category",
+        "deleteSuccess": "Category deleted successfully",
+        "deleteFailed": "Failed to delete category",
+        "nameRequired": "Please input the category name",
+        "nameLabel": "Name",
+        "descriptionLabel": "Description"
+    }
+}
