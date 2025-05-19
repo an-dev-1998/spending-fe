@@ -1,5 +1,6 @@
 import { Table, TableProps } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { useEffect, useState } from 'react';
 
 interface AppTableProps<T> extends Omit<TableProps<T>, 'columns'> {
   columns: ColumnsType<T>;
@@ -20,14 +21,43 @@ const AppTable = <T extends object>({
   scroll,
   ...rest
 }: AppTableProps<T>) => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  const mobilePagination = isSmallScreen
+    ? {
+        ...pagination,
+        showSizeChanger: false,
+        showTotal: (total: number) => `${total} items`,
+        size: 'small' as const,
+      }
+    : pagination;
+
   return (
     <Table<T>
       columns={columns}
       dataSource={dataSource}
       loading={loading}
-      pagination={pagination}
-      scroll={scroll}
+      pagination={mobilePagination}
+      scroll={isSmallScreen ? { x: 'max-content' } : scroll}
       {...rest}
+      style={{
+        backgroundColor: 'white',
+        ...(isSmallScreen && {
+          fontSize: '14px',
+          overflowX: 'auto',
+        }),
+      }}
     />
   );
 };

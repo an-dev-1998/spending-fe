@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { authService } from '../utils/api/authService';
 import { fetchSanctumCsrfToken } from '../utils/api/sanctum';
 import { useTranslation } from 'react-i18next';
+import { useUserStore } from '../store/userStore';
 
 const { Title } = Typography;
 
@@ -19,6 +20,8 @@ const Login: React.FC = () => {
   const location = useLocation();
   const { message } = App.useApp();
   const { t } = useTranslation();
+  const setRole = useUserStore((state) => state.setRole);
+  const setName = useUserStore((state) => state.setName);
 
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true);
@@ -32,7 +35,8 @@ const Login: React.FC = () => {
 
       if (response && response.token) {
         authService.setToken(response.token);
-        
+        setRole(response.user.role);
+        setName(response.user.name);
         message.success(t('login.success'));
         const from = (location.state as any)?.from?.pathname || '/dashboard';
         navigate(from, { replace: true });

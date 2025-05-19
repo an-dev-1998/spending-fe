@@ -3,6 +3,7 @@ import { Layout, Button, Typography, Space, Avatar, Dropdown } from 'antd';
 import { UserOutlined, BellOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import LanguageSwitcher from '../common/LanguageSwitch';
+import { useUserStore } from '../../store/userStore';
 const { Header } = Layout;
 const { Title } = Typography;
 
@@ -22,9 +23,19 @@ const userMenuItems: MenuProps['items'] = [
 ];
 
 const HeaderComponent: React.FC = () => {
+  const clearRole = useUserStore((state) => state.clearRole);
+  const clearName = useUserStore((state) => state.clearName);
+  const name = useUserStore((state) => state.name);
+  const role = useUserStore((state) => state.role);
+
+  console.log(role); 
+  console.log(name);
+
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     if (key === 'logout') {
       localStorage.removeItem('token');
+      clearRole();
+      clearName();
       window.location.href = '/login';
     }
   };
@@ -49,7 +60,7 @@ const HeaderComponent: React.FC = () => {
         <Dropdown menu={{ items: userMenuItems, onClick: handleMenuClick }} placement="bottomRight">
           <Space style={{ cursor: 'pointer' }}>
             <Avatar icon={<UserOutlined />} />
-            <span>John Doe</span>
+            <span>{name}</span>
           </Space>
         </Dropdown>
       </Space>

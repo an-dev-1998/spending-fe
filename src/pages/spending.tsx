@@ -34,18 +34,35 @@ const SpendingPage: React.FC = () => {
       title: t("spending.amount"),
       dataIndex: 'amount',
       key: 'amount',
+      render: (amount: string) => {
+        const formattedAmount = parseFloat(amount).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        return formattedAmount;
+      }
+    },
+    {
+      title: t("spending.date"),
+      dataIndex: 'date',
+      key: 'date',
+      render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
+    },
+    {
+      title: t("spending.category.name"),
+      dataIndex: ['category', 'name'],
+      key: 'category.name',
+    },
+    {
+      title: t("spending.user.name"),
+      dataIndex: ['user', 'name'],
+      key: 'user.name',
     },
     {
       title: t("spending.createdAt"),
       dataIndex: 'created_at',
       key: 'created_at',
-      render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
-    },
-    {
-      title: t("spending.updatedAt"),
-      dataIndex: 'updated_at',
-      key: 'updated_at',
-      render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
+      render: (date: string) => dayjs(date).format('DD-MM-YYYY HH:mm'),
     },
     {
       title: t("spending.action"),

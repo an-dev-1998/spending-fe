@@ -8,6 +8,7 @@ export interface AuthResponse {
     email: string;
     created_at: string;
     updated_at: string;
+    role: number;
   };
   token: string;
 }

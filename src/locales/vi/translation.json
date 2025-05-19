@@ -3,7 +3,8 @@
       "title": "Bảng điều khiển"
     },
     "analytics": {
-      "title": "Phân tích"
+      "title": "Phân tích",
+      "selectUser": "Chọn người dùng"
     },
     "reports": "Báo cáo",
     "settings": {
@@ -40,7 +41,20 @@
       "passwordConfirmation": "Xác nhận mật khẩu",
       "register": "Đăng ký",
       "alreadyHaveAccount": "Đã có tài khoản?",
-      "login": "Đăng nhập"
+      "login": "Đăng nhập",
+      "title": "Đăng ký",
+      "description": "Tạo tài khoản để bắt đầu",
+      "name": "Tên",
+      "nameRequired": "Vui lòng nhập tên",
+      "email": "Email",
+      "emailRequired": "Vui lòng nhập email",
+      "emailInvalid": "Vui lòng nhập email hợp lệ",
+      "password": "Mật khẩu",
+      "passwordRequired": "Vui lòng nhập mật khẩu",
+      "passwordMinLength": "Mật khẩu phải có ít nhất 8 ký tự",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "confirmPasswordRequired": "Vui lòng xác nhận mật khẩu",
+      "confirmPasswordMismatch": "Mật khẩu không khớp"
     },
     "user": {
       "title": "Người dùng",
@@ -73,7 +87,13 @@
       "createdAt": "Ngày tạo",
       "updatedAt": "Ngày cập nhật",
       "action": "Thao tác",
-      "date": "Ngày"
+      "date": "Ngày",
+      "user": {
+        "name": "Người dùng"
+      },
+      "category": {
+        "name": "Danh mục"
+      }
     },
     "setting": {
       "title": "Đổi mật khẩu",

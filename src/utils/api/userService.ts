@@ -37,6 +37,11 @@ class UserService {
   async deleteUser(id: string): Promise<void> {
     await apiService.delete<void>('/delete-user', { data: { id } });
   }
+
+  // Get current user
+  async getCurrentUser(): Promise<User> {
+    return await apiService.get<User>('/user');
+  }
 }
 
 // Export a singleton instance

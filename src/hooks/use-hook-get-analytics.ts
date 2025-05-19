@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { message } from 'antd';
 import { apiService } from '../utils/api/apiService';
+import dayjs from 'dayjs';
 
 interface Category {
   id: number;
@@ -16,7 +17,13 @@ interface AnalyticsData {
   category: Category;
 }
 
-export const useGetAnalytics = () => {
+interface AnalyticsParams {
+  startDate?: dayjs.Dayjs;
+  endDate?: dayjs.Dayjs;
+  userId?: number;
+}
+
+export const useGetAnalytics = (params?: AnalyticsParams) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<AnalyticsData[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -24,7 +31,22 @@ export const useGetAnalytics = () => {
   const fetchAnalytics = async () => {
     setLoading(true);
     try {
-      const response = await apiService.get<AnalyticsData[]>('/analytics/spending-by-category');
+      const queryParams = new URLSearchParams();
+      
+      if (params?.startDate) {
+        queryParams.append('start_date', params.startDate.format('YYYY-MM-DD'));
+      }
+      if (params?.endDate) {
+        queryParams.append('end_date', params.endDate.format('YYYY-MM-DD'));
+      }
+      if (params?.userId) {
+        queryParams.append('user_id', params.userId.toString());
+      }
+
+      const queryString = queryParams.toString();
+      const url = `/analytics/spending-by-category${queryString ? `?${queryString}` : ''}`;
+      
+      const response = await apiService.get<AnalyticsData[]>(url);
       setData(response);
       setError(null);
     } catch (error) {
@@ -38,7 +60,7 @@ export const useGetAnalytics = () => {
 
   useEffect(() => {
     fetchAnalytics();
-  }, []);
+  }, [params?.startDate, params?.endDate, params?.userId]);
 
   return {
     loading,

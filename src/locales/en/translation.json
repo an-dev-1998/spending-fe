@@ -3,7 +3,8 @@
         "title": "Dashboard"
     },
     "analytics": {
-        "title": "Analytics"
+        "title": "Analytics",
+        "selectUser": "Select User"
     },
     "reports": "Reports",
     "settings": {
@@ -40,7 +41,20 @@
         "passwordConfirmation": "Confirm Password",
         "register": "Register",
         "alreadyHaveAccount": "Already have an account?",
-        "login": "Login"
+        "login": "Login",
+        "title": "Register",
+        "description": "Create an account to get started",
+        "name": "Name",
+        "nameRequired": "Please input your name",
+        "email": "Email",
+        "emailRequired": "Please input your email",
+        "emailInvalid": "Please enter a valid email",
+        "password": "Password",
+        "passwordRequired": "Please input your password",
+        "passwordMinLength": "Password must be at least 8 characters",
+        "confirmPassword": "Confirm Password",
+        "confirmPasswordRequired": "Please confirm your password",
+        "confirmPasswordMismatch": "Passwords do not match"
     },
     "user": {
         "title": "Users",
@@ -73,7 +87,13 @@
         "createdAt": "Created At",
         "updatedAt": "Updated At",
         "action": "Action",
-        "date": "Date"
+        "date": "Date",
+        "user": {
+            "name": "User"
+        },
+        "category": {
+            "name": "Category"
+        }
     },
     "setting": {
         "title": "Change Password",
