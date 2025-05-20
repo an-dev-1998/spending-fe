@@ -2,13 +2,21 @@ import { apiService, PaginatedResponse } from './apiService';
 
 // Spending interface
 export interface Spending {
-  id: number;
-  name: string;
-  description?: string;
+  id: string;
+  date: string;
+  category: {
+    id: number;
+    name: string;
+    description: string;
+    created_at: string;
+    updated_at: string;
+  };
+  category_id: number;
+  amount: string;
+  description: string;
   created_at: string;
   updated_at: string;
-  category_id: number;
-  amount: number;
+  user_id: number;
 }
 
 // Spending service class

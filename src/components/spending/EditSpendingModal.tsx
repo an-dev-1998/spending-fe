@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { Modal, Form, message } from 'antd';
-import { Spending, spendingService } from '../../utils/api';
+import { spendingService } from '../../utils/api';
+import { Spending } from '../../types/spending';
 import SpendingForm from './SpendingForm';
 import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
 
 interface EditSpendingModalProps {
   spending: Spending | null;
@@ -19,13 +21,16 @@ const EditSpendingModal: React.FC<EditSpendingModalProps> = ({
 }) => {
   const [form] = Form.useForm();
   const { t } = useTranslation();
+  
   // Reset form when spending changes
   useEffect(() => {
     if (spending && visible) {
+      const date = spending.date ? dayjs(spending.date) : undefined;
       form.setFieldsValue({
-        name: spending.name,
         description: spending.description,
-        amount: spending.amount,
+        amount: parseFloat(spending.amount),
+        date: date?.isValid() ? date : undefined,
+        category_id: spending.category_id,
       });
     }
   }, [spending, visible, form]);
@@ -34,7 +39,7 @@ const EditSpendingModal: React.FC<EditSpendingModalProps> = ({
     try {
       const values = await form.validateFields();
       if (spending) {
-        await spendingService.updateSpending(spending.id, values);
+        await spendingService.updateSpending(parseInt(spending.id), values);
         message.success(t('spending.updateSuccess'));
         onSuccess();
         onClose();
@@ -50,7 +55,7 @@ const EditSpendingModal: React.FC<EditSpendingModalProps> = ({
       open={visible}
       onCancel={onClose}
       onOk={handleSubmit}
-      destroyOnClose
+      destroyOnHidden
     >
       <SpendingForm form={form} initialValues={spending || undefined} />
     </Modal>

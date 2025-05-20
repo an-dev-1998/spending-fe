@@ -48,7 +48,7 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
       open={visible}
       onCancel={onClose}
       onOk={handleSubmit}
-      destroyOnClose
+      destroyOnHidden
     >
       <CategoryForm form={form} initialValues={category || undefined} />
     </Modal>

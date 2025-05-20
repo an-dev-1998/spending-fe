@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, InputNumber, DatePicker } from 'antd';
-import { Spending } from '../../utils/api';
+import { Spending } from '../../types/spending';
 import AppSelect from '../common/AppSelect';
 import { categoryService } from '../../utils/api';
 import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
 
 interface SpendingFormProps {
   form: any;
@@ -20,7 +21,11 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
   const [categories, setCategories] = useState<Category[]>([]);
   useEffect(() => {
     if (initialValues) {
-      form.setFieldsValue(initialValues);
+      const formattedValues = {
+        ...initialValues,
+        date: initialValues.date ? dayjs(initialValues.date) : '2025-12-12'
+      };
+      form.setFieldsValue(formattedValues);
     }
   }, [initialValues, form]);
 
@@ -60,7 +65,11 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
         label={t('spending.date')}
         style={{ width: '50%' }}
       >
-        <DatePicker style={{ width: '100%' }} />
+        <DatePicker 
+          style={{ width: '100%' }}
+          format="YYYY-MM-DD"
+          showTime={false}
+        />
       </Form.Item>
       <Form.Item
         name="description"

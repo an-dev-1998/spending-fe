@@ -22,29 +22,58 @@ const Login: React.FC = () => {
   const { t } = useTranslation();
   const setRole = useUserStore((state) => state.setRole);
   const setName = useUserStore((state) => state.setName);
-
+  const setEmail = useUserStore((state) => state.setEmail);
+  const setUserId = useUserStore((state) => state.setUserId);
+  const setAvatar = useUserStore((state) => state.setAvatar);
+  
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true);
     try {
+      console.log('Starting login process...');
       await fetchSanctumCsrfToken();
+      console.log('CSRF token fetched successfully');
       
+      console.log('Attempting login with:', { email: values.email });
       const response = await authService.login({
         email: values.email,
         password: values.password
       });
+      console.log('Login response:', response);
 
-      if (response && response.token) {
-        authService.setToken(response.token);
-        setRole(response.user.role);
-        setName(response.user.name);
-        message.success(t('login.success'));
-        const from = (location.state as any)?.from?.pathname || '/dashboard';
-        navigate(from, { replace: true });
-      } else {
+      if (!response) {
+        console.error('No response received from login attempt');
         throw new Error(t('login.invalidResponse'));
       }
+
+      // Handle nested data structure
+      const responseData = response.data || response;
+      
+      if (!responseData.token || !responseData.user) {
+        console.error('Invalid response format:', responseData);
+        throw new Error(t('login.invalidResponseFormat'));
+      }
+
+      console.log('Setting auth token and user data...');
+      authService.setToken(responseData.token);
+      setRole(responseData.user.role);
+      setName(responseData.user.name);
+      setEmail(responseData.user.email);
+      setUserId(responseData.user.id.toString());
+      if ('image_url' in responseData.user) {
+        setAvatar(responseData.user.image_url);
+      }
+      
+      console.log('Login successful, redirecting...');
+      message.success(t('login.success'));
+      const from = (location.state as any)?.from?.pathname || '/dashboard';
+      navigate(from, { replace: true });
     } catch (error: any) {
-      console.log(error);
+      console.error('Login error:', {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+        headers: error.response?.headers
+      });
       const errorMessage = error.response?.data?.message || error.message || t('login.failed');
       message.error(errorMessage);
     } finally {

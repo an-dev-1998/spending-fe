@@ -129,5 +129,23 @@
         "nameRequired": "Please input the category name",
         "nameLabel": "Name",
         "descriptionLabel": "Description"
+    },
+    "account": {
+        "title": "Account Settings",
+        "profile": "Profile",
+        "name": "Name",
+        "nameRequired": "Please input your name",
+        "email": "Email",
+        "emailRequired": "Please input your email",
+        "emailInvalid": "Please enter a valid email",
+        "avatar": "Avatar",
+        "upload": "Upload",
+        "uploadImageOnly": "You can only upload image files!",
+        "imageSizeLimit": "Image must be smaller than 2MB!",
+        "avatarUpdateSuccess": "Avatar updated successfully",
+        "avatarUpdateError": "Failed to update avatar",
+        "updateSuccess": "Profile updated successfully",
+        "updateError": "Failed to update profile",
+        "saveChanges": "Save Changes"
     }
 }

@@ -35,7 +35,7 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
       open={visible}
       onCancel={onClose}
       onOk={handleSubmit}
-      destroyOnClose
+      destroyOnHidden
     >
       <CategoryForm form={form} />
     </Modal>

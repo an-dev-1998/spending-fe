@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Button, Typography, Space, Avatar, Dropdown } from 'antd';
+import { Layout, Button, Typography, Space, Avatar, Dropdown, Tag } from 'antd';
 import { UserOutlined, BellOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import LanguageSwitcher from '../common/LanguageSwitch';
@@ -27,16 +27,19 @@ const HeaderComponent: React.FC = () => {
   const clearName = useUserStore((state) => state.clearName);
   const name = useUserStore((state) => state.name);
   const role = useUserStore((state) => state.role);
-
-  console.log(role); 
-  console.log(name);
+  const avatar = useUserStore((state) => state.avatar);
+  const clearAvatar = useUserStore((state) => state.clearAvatar);
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     if (key === 'logout') {
       localStorage.removeItem('token');
       clearRole();
       clearName();
+      clearAvatar();
       window.location.href = '/login';
+    }
+    if (key === 'profile') {
+      window.location.href = '/account';
     }
   };
 
@@ -59,8 +62,9 @@ const HeaderComponent: React.FC = () => {
         <LanguageSwitcher />
         <Dropdown menu={{ items: userMenuItems, onClick: handleMenuClick }} placement="bottomRight">
           <Space style={{ cursor: 'pointer' }}>
-            <Avatar icon={<UserOutlined />} />
+            <Avatar src={avatar} icon={<UserOutlined />} />
             <span>{name}</span>
+            {role === 1 ? <Tag color="red">Admin</Tag> : <Tag color="blue">User</Tag>}
           </Space>
         </Dropdown>
       </Space>

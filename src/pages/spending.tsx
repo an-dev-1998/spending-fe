@@ -54,11 +54,6 @@ const SpendingPage: React.FC = () => {
       key: 'category.name',
     },
     {
-      title: t("spending.user.name"),
-      dataIndex: ['user', 'name'],
-      key: 'user.name',
-    },
-    {
       title: t("spending.createdAt"),
       dataIndex: 'created_at',
       key: 'created_at',
@@ -110,7 +105,7 @@ const SpendingPage: React.FC = () => {
   const handleConfirmDelete = async () => {
     if (selectedSpending) {
       try {
-        await spendingService.deleteSpending(selectedSpending.id);
+        await spendingService.deleteSpending(parseInt(selectedSpending.id));
         message.success(t('spending.deleteSuccess'));
         handleSuccess();
         handleCloseDelete();
@@ -151,7 +146,7 @@ const SpendingPage: React.FC = () => {
         visible={isDeleteModalOpen}
         onClose={handleCloseDelete}
         onConfirm={handleConfirmDelete}
-        itemName={selectedSpending?.name}
+        itemName={selectedSpending?.description}
         title={t('spending.deleteTitle')}
       />
     </>

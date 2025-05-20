@@ -129,6 +129,24 @@
       "nameRequired": "Vui lòng nhập tên danh mục",
       "nameLabel": "Tên",
       "descriptionLabel": "Mô tả"
+    },
+    "account": {
+      "title": "Cài đặt tài khoản",
+      "profile": "Hồ sơ",
+      "name": "Tên",
+      "nameRequired": "Vui lòng nhập tên",
+      "email": "Email",
+      "emailRequired": "Vui lòng nhập email",
+      "emailInvalid": "Vui lòng nhập email hợp lệ",
+      "avatar": "Ảnh đại diện",
+      "upload": "Tải lên",
+      "uploadImageOnly": "Bạn chỉ có thể tải lên file ảnh!",
+      "imageSizeLimit": "Ảnh phải nhỏ hơn 2MB!",
+      "avatarUpdateSuccess": "Cập nhật ảnh đại diện thành công",
+      "avatarUpdateError": "Cập nhật ảnh đại diện thất bại",
+      "updateSuccess": "Cập nhật hồ sơ thành công",
+      "updateError": "Cập nhật hồ sơ thất bại",
+      "saveChanges": "Lưu thay đổi"
     }
   }
   

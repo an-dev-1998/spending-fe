@@ -33,9 +33,26 @@ class ApiService {
   // Generic POST request
   async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
     try {
-      const response: AxiosResponse<ApiResponse<T>> = await apiClient.post(url, data, config);
-      return response.data.data;
-    } catch (error) {
+      console.log('ApiService: Making POST request to', url);
+      const response: AxiosResponse<T> = await apiClient.post(url, data, config);
+      console.log('ApiService: Raw response:', response);
+      console.log('ApiService: Response data:', response.data);
+      
+      // Check if the response follows the standard ApiResponse format
+      const responseData = response.data as any;
+      if (responseData && typeof responseData === 'object' && 'data' in responseData && 'status' in responseData) {
+        return responseData.data;
+      }
+      
+      // If not, return the response data directly
+      return response.data;
+    } catch (error: any) {
+      console.error('ApiService: Error in POST request:', {
+        url,
+        error: error.message,
+        response: error.response?.data,
+        status: error.response?.status
+      });
       this.handleError(error);
       throw error;
     }

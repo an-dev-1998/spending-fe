@@ -48,7 +48,7 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ user, visible, onClose, o
       open={visible}
       onOk={handleSubmit}
       onCancel={handleCancel}
-      destroyOnClose
+      destroyOnHidden
     >
       <UserForm form={form} initialValues={user || undefined} type="edit" />
     </Modal>

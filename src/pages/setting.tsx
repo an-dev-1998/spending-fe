@@ -17,7 +17,6 @@ const SettingPage: React.FC = () => {
     setError('');
     setSuccess('');
     setLoading(true);
-    console.log(values);
 
     try {
       await authService.changePassword({

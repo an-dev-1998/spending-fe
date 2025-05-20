@@ -32,7 +32,7 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ visible, onClose, onS
       open={visible}
       onOk={handleSubmit}
       onCancel={onClose}
-      destroyOnClose
+      destroyOnHidden
     >
       <UserForm form={form} type="create" />
     </Modal>

@@ -2,15 +2,27 @@ import { apiService } from './apiService';
 
 // Auth response interface
 export interface AuthResponse {
-  user: {
+  data?: {
+    user: {
+      id: number;
+      name: string;
+      email: string;
+      created_at: string;
+      updated_at: string;
+      role: number;
+    };
+    token: string;
+  };
+  user?: {
     id: number;
     name: string;
     email: string;
     created_at: string;
     updated_at: string;
     role: number;
+    image_url: string;
   };
-  token: string;
+  token?: string;
 }
 
 // Login credentials interface

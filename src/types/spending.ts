@@ -1,16 +1,24 @@
 export interface Spending {
   id: string;
   date: string;
-  category: string;
-  amount: number;
+  category: {
+    id: number;
+    name: string;
+    description: string;
+    created_at: string;
+    updated_at: string;
+  };
+  category_id: number;
+  amount: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
+  user_id: number;
 }
 
 export interface CreateSpendingDto {
   date: string;
-  category: string;
+  category_id: number;
   amount: number;
   description: string;
 }

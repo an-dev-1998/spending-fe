@@ -8,6 +8,9 @@ export interface User {
   email_verified_at: string | null;
   created_at: string;
   updated_at: string;
+  image_url?: string;
+  role: number;
+  avatar: string;
 }
 
 // User service class

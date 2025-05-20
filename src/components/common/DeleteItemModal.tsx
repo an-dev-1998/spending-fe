@@ -24,7 +24,7 @@ const DeleteItemModal: React.FC<DeleteItemModalProps> = ({
       onCancel={onClose}
       okText="Delete"
       okButtonProps={{ danger: true }}
-      destroyOnClose
+      destroyOnHidden
     >
       <Typography.Text>
         Are you sure you want to delete {itemName}? This action cannot be undone.
