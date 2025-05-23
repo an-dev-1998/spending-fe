@@ -19,13 +19,38 @@ export interface Income {
   user_id: number;
 }
 
+export interface IncomeFilters {
+  page?: number;
+  pageSize?: number;
+  startDate?: string;
+  endDate?: string;
+}
+
 // Income service class
 class IncomeService {
   private readonly baseUrl = '/incomes';
 
-  // Get all incomes with pagination
-  async getIncomes(page = 1, pageSize = 10): Promise<Income[] | PaginatedResponse<Income>> {
-    const response = await apiService.get<Income[] | PaginatedResponse<Income>>(`${this.baseUrl}?page=${page}&pageSize=${pageSize}`);
+  // Get all incomes with pagination and filters
+  async getIncomes(filters?: IncomeFilters): Promise<Income[] | PaginatedResponse<Income>> {
+    const queryParams = new URLSearchParams();
+    
+    if (filters?.page) {
+      queryParams.append('page', filters.page.toString());
+    }
+    if (filters?.pageSize) {
+      queryParams.append('pageSize', filters.pageSize.toString());
+    }
+    if (filters?.startDate) {
+      queryParams.append('start_date', filters.startDate);
+    }
+    if (filters?.endDate) {
+      queryParams.append('end_date', filters.endDate);
+    }
+
+    const queryString = queryParams.toString();
+    const url = `${this.baseUrl}${queryString ? `?${queryString}` : ''}`;
+    
+    const response = await apiService.get<Income[] | PaginatedResponse<Income>>(url);
     return response;
   }
 

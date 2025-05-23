@@ -25,6 +25,14 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
 
   const suggestedAmounts = SUGGESTED_AMOUNTS;
 
+  useEffect(() => {
+    if (initialValues?.amount) {
+      const amount = parseFloat(initialValues.amount);
+      setSelectedAmount(amount);
+      form.setFieldValue('amount', amount);
+    }
+  }, [initialValues, form]);
+
   const handleAmountClick = (amount: number) => {
     setSelectedAmount(amount);
     form.setFieldValue('amount', amount);

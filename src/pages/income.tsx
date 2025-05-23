@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppTable from '../components/common/AppTable';
-import { Space, Button, message } from 'antd';
+import { Space, Button, message, DatePicker } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Income, incomeService } from '../utils/api';
 import dayjs from 'dayjs';
@@ -9,9 +9,10 @@ import EditIncomeModal from '../components/income/EditIncomeModal';
 import CreateIncomeModal from '../components/income/CreateIncomeModal';
 import DeleteItemModal from '../components/common/DeleteItemModal';
 import { useTranslation } from 'react-i18next';
+import type { RangePickerProps } from 'antd/es/date-picker';
 
 const IncomePage: React.FC = () => {
-  const { loading, incomes, pagination, handleTableChange } = useGetIncomes();
+  const { loading, incomes, pagination, handleTableChange, handleDateRangeChange } = useGetIncomes();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -110,6 +111,14 @@ const IncomePage: React.FC = () => {
     }
   };
 
+  const onDateRangeChange: RangePickerProps['onChange'] = (dates) => {
+    if (dates && dates[0] && dates[1]) {
+      handleDateRangeChange([dates[0], dates[1]]);
+    } else {
+      handleDateRangeChange(null);
+    }
+  };
+
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
@@ -117,6 +126,9 @@ const IncomePage: React.FC = () => {
         <Button type="primary" icon={<PlusOutlined />} onClick={handleOpenCreate}>
           {t('income.create')}
         </Button>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <DatePicker.RangePicker onChange={onDateRangeChange} />
       </div>
       <AppTable<Income>
         columns={columns}

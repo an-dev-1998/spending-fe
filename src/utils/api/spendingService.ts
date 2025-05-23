@@ -30,8 +30,9 @@ class SpendingService {
   private readonly baseUrl = '/spendings';
 
   // Get all spendings with pagination
-  async getSpendings(page = 1, pageSize = 10): Promise<Spending[] | PaginatedResponse<Spending>> {
-    const response = await apiService.get<Spending[] | PaginatedResponse<Spending>>(`${this.baseUrl}?page=${page}&pageSize=${pageSize}`);
+  async getSpendings(page = 1, pageSize = 10, queryParams?: string): Promise<Spending[] | PaginatedResponse<Spending>> {
+    const url = `${this.baseUrl}${queryParams ? `?${queryParams}` : `?page=${page}&pageSize=${pageSize}`}`;
+    const response = await apiService.get<Spending[] | PaginatedResponse<Spending>>(url);
     return response;
   }
 

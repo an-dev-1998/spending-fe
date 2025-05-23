@@ -8,7 +8,8 @@ import {
   CaretRightOutlined,
   CaretLeftOutlined,
   MoneyCollectOutlined,
-  UnorderedListOutlined
+  UnorderedListOutlined,
+  DollarOutlined
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -53,7 +54,7 @@ const Sidebar: React.FC = () => {
     {
       key: 'income',
       label: t('income.title'),
-      icon: <MoneyCollectOutlined />
+      icon: <DollarOutlined />
     },
     {
       key: 'category',
@@ -82,7 +83,7 @@ const Sidebar: React.FC = () => {
           {
             key: 'analytics-income',
             label: t('analytics.income'),
-            icon: <MoneyCollectOutlined />,
+            icon: <DollarOutlined />,
           },
         ],
       },

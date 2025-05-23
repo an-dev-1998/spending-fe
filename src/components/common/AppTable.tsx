@@ -7,6 +7,7 @@ interface AppTableProps<T> extends Omit<TableProps<T>, 'columns'> {
   loading?: boolean;
   pagination?: TableProps<T>['pagination'] | false;
   scroll?: { x?: number | true; y?: number };
+  onFilterChange?: (filters: Record<string, any>) => void;
 }
 
 const AppTable = <T extends object>({
@@ -19,6 +20,7 @@ const AppTable = <T extends object>({
     showTotal: (total) => `Total ${total} items`,
   },
   scroll,
+  onFilterChange,
   ...rest
 }: AppTableProps<T>) => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -50,6 +52,10 @@ const AppTable = <T extends object>({
       loading={loading}
       pagination={mobilePagination}
       scroll={isSmallScreen ? { x: 'max-content' } : scroll}
+      onChange={(pagination, filters, sorter, extra) => {
+        onFilterChange?.(filters);
+        rest.onChange?.(pagination, filters, sorter, extra);
+      }}
       {...rest}
       style={{
         backgroundColor: 'white',

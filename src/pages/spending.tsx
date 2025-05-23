@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppTable from '../components/common/AppTable';
-import { Space, Button, message } from 'antd';
+import { Space, Button, message, DatePicker } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Spending, spendingService } from '../utils/api';
 import dayjs from 'dayjs';
@@ -9,9 +9,10 @@ import EditSpendingModal from '../components/spending/EditSpendingModal';
 import CreateSpendingModal from '../components/spending/CreateSpendingModal';
 import DeleteItemModal from '../components/common/DeleteItemModal';
 import { useTranslation } from 'react-i18next';
+import type { RangePickerProps } from 'antd/es/date-picker';
 
 const SpendingPage: React.FC = () => {
-  const { loading, spendings, pagination, handleTableChange } = useGetSpendings();
+  const { loading, spendings, pagination, handleTableChange, handleDateRangeChange } = useGetSpendings();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -23,6 +24,14 @@ const SpendingPage: React.FC = () => {
       setSelectedSpending(null);
     }
   }, [isEditModalOpen, isDeleteModalOpen]);
+
+  const onDateRangeChange: RangePickerProps['onChange'] = (dates) => {
+    if (dates && dates[0] && dates[1]) {
+      handleDateRangeChange([dates[0], dates[1]]);
+    } else {
+      handleDateRangeChange(null);
+    }
+  };
 
   const columns = [
     {
@@ -122,6 +131,9 @@ const SpendingPage: React.FC = () => {
         <Button type="primary" icon={<PlusOutlined />} onClick={handleOpenCreate}>
           {t('spending.create')}
         </Button>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <DatePicker.RangePicker onChange={onDateRangeChange} />
       </div>
       <AppTable<Spending>
         columns={columns}

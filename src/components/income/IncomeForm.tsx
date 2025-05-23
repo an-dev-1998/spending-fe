@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, InputNumber, DatePicker, Space, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useGetCategories } from '../../hooks/use-hook-get-categories';
@@ -22,6 +22,14 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ form, initialValues }) => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
 
   const suggestedAmounts = SUGGESTED_AMOUNTS;
+
+  useEffect(() => {
+    if (initialValues?.amount) {
+      const amount = parseFloat(initialValues.amount);
+      setSelectedAmount(amount);
+      form.setFieldValue('amount', amount);
+    }
+  }, [initialValues, form]);
 
   const handleAmountClick = (amount: number) => {
     setSelectedAmount(amount);

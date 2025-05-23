@@ -174,6 +174,9 @@
       "createdAt": "Ngày tạo",
       "updatedAt": "Ngày cập nhật",
       "action": "Thao tác",
+      "create": "Tạo thu nhập",
+      "edit": "Chỉnh sửa thu nhập",
+      "delete": "Xóa thu nhập",
       "dateRequired": "Vui lòng chọn ngày",
       "amountRequired": "Vui lòng nhập số tiền",
       "descriptionRequired": "Vui lòng nhập mô tả"
