@@ -44,8 +44,6 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ form, initialValues }) => {
       >
         <Space direction="vertical" style={{ width: '100%' }}>
           <InputNumber<number>
-            formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-            parser={(value) => value?.replace(/\$\s?|(,*)/g, '') as unknown as number}
             placeholder={t('income.amount')}
             style={{ width: '100%' }}
             value={selectedAmount}

@@ -26,7 +26,7 @@ const DemoPie = memo<DemoPieProps>(
       angleField: 'value',
       colorField: 'type',
       label: {
-        text: 'value',
+        text: (d: any) => `${d.value.toFixed(2)}`,
         position: 'outside',
       },
       onReady,
