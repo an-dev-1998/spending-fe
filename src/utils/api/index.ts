@@ -8,3 +8,4 @@ export * from './apiService';
 export * from './userService';
 export * from './categoryService'; 
 export * from './spendingService';
+export * from './incomeService';

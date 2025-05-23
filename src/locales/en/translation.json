@@ -1,10 +1,15 @@
 {
     "dashboard": {
-        "title": "Dashboard"
+        "title": "Dashboard",
+        "totalIncome": "Total Income",
+        "totalSpending": "Total Spending",
+        "totalBalance": "Total Balance"
     },
     "analytics": {
         "title": "Analytics",
-        "selectUser": "Select User"
+        "selectUser": "Select User",
+        "spending": "Spending Analysis",
+        "income": "Income Analysis"
     },
     "reports": "Reports",
     "settings": {
@@ -147,5 +152,33 @@
         "updateSuccess": "Profile updated successfully",
         "updateError": "Failed to update profile",
         "saveChanges": "Save Changes"
+    },
+    "income": {
+        "title": "Income",
+        "description": "Description",
+        "amount": "Amount",
+        "date": "Date",
+        "category": "Category",
+        "categoryId": "Category",
+        "categoryIdRequired": "Please select a category",
+        "selectIncomeName": "Select income category",
+        "createSuccess": "Income created successfully",
+        "createError": "Failed to create income",
+        "createTitle": "Create Income",
+        "updateSuccess": "Income updated successfully",
+        "updateError": "Failed to update income",
+        "editTitle": "Edit Income",
+        "deleteTitle": "Delete Income",
+        "deleteSuccess": "Income deleted successfully",
+        "deleteFailed": "Failed to delete income",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "action": "Action",
+        "create": "Create Income",
+        "edit": "Edit Income",
+        "delete": "Delete Income",
+        "dateRequired": "Please select a date",
+        "amountRequired": "Please enter an amount",
+        "descriptionRequired": "Please enter a description"
     }
 }

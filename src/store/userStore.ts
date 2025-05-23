@@ -10,9 +10,6 @@ interface UserState {
   email: string | null;
   setEmail: (email: string) => void;
   clearEmail: () => void;
-  avatar: string | null;
-  setAvatar: (avatar: string) => void;
-  clearAvatar: () => void;
   userId: string | null;
   setUserId: (userId: string) => void;
   clearUserId: () => void;
@@ -24,17 +21,15 @@ const loadState = () => {
     const role = localStorage.getItem('userRole');
     const name = localStorage.getItem('userName');
     const email = localStorage.getItem('userEmail');
-    const avatar = localStorage.getItem('userAvatar');
     const userId = localStorage.getItem('userId');
     return {
       role: role ? parseInt(role) : null,
       name: name || null,
       email: email || null,
-      avatar: avatar || null,
       userId: userId || null,
     };
   } catch (error) {
-    return { role: null, name: null, email: null, avatar: null, userId: null };
+    return { role: null, name: null, email: null, userId: null };
   }
 };
 
@@ -63,14 +58,6 @@ export const useUserStore = create<UserState>((set) => ({
   clearEmail: () => {
     localStorage.removeItem('userEmail');
     set({ email: null });
-  },
-  setAvatar: (avatar: string) => {
-    localStorage.setItem('userAvatar', avatar);
-    set({ avatar });
-  },
-  clearAvatar: () => {
-    localStorage.removeItem('userAvatar');
-    set({ avatar: null });
   },
   setUserId: (userId: string) => {
     localStorage.setItem('userId', userId);

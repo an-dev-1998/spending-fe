@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, InputNumber, DatePicker } from 'antd';
+import { Form, Input, InputNumber, DatePicker, Space, Button } from 'antd';
 import { Spending } from '../../types/spending';
 import AppSelect from '../common/AppSelect';
 import { categoryService } from '../../utils/api';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
+import { SUGGESTED_AMOUNTS } from '../../constans';
+import '../../assets/app.css';
 
 interface SpendingFormProps {
   form: any;
@@ -19,6 +21,15 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
   const { t } = useTranslation();
   
   const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+
+  const suggestedAmounts = SUGGESTED_AMOUNTS;
+
+  const handleAmountClick = (amount: number) => {
+    setSelectedAmount(amount);
+    form.setFieldValue('amount', amount);
+  };
+
   useEffect(() => {
     if (initialValues) {
       const formattedValues = {
@@ -75,19 +86,37 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
         name="description"
         label={t('spending.description')}
       >
-        <Input.TextArea rows={4} />
+        <Input.TextArea rows={4} placeholder={t('spending.description')} />
       </Form.Item>
       <Form.Item
         name="amount"
         label={t('spending.amount')}
         rules={[{ required: true, message: t('spending.amountRequired') }]}
       >
-        <InputNumber
-          style={{ width: '100%' }}
-          min={0}
-          precision={2}
-          placeholder={t('spending.enterAmount')}
-        />
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <InputNumber<number>
+            formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            parser={(value) => value?.replace(/\$\s?|(,*)/g, '') as unknown as number}
+            placeholder={t('spending.amount')}
+            style={{ width: '100%' }}
+            value={selectedAmount}
+            onChange={(value) => setSelectedAmount(value)}
+            step={5000}
+            min={0}
+          />
+          <Space wrap className="custom-space">
+            {suggestedAmounts.map((amount) => (
+              <Button
+                key={amount}
+                type={selectedAmount === amount ? 'primary' : 'default'}
+                onClick={() => handleAmountClick(amount)}
+                style={{ width: '100%', fontSize: '12px' }}
+              >
+                ${amount.toLocaleString()}
+              </Button>
+            ))}
+          </Space>
+        </Space>
       </Form.Item>
     </Form>
   );

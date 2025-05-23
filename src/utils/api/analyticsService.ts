@@ -1,5 +1,7 @@
 // import { apiService } from './apiService';
 
+import { apiService } from "./apiService";
+
 export interface SpendingData {
   date: string;
   amount: number;
@@ -20,39 +22,22 @@ export interface CategoryBreakdown {
 }
 
 class AnalyticsService {
-  // private readonly baseUrl = '/analytics';
+  private readonly baseUrl = '/analytics';
 
-  // // Get spending data for a date range
-  // async getSpendingData(startDate: string, endDate: string): Promise<SpendingData[]> {
+  // async getSpendingAnalyticsData(startDate: string, endDate: string): Promise<SpendingData[]> {
   //   const response = await apiService.get<SpendingData[]>(
   //     `${this.baseUrl}/spending?startDate=${startDate}&endDate=${endDate}`
   //   );
-  //   return response.data;
+  //   return response;
   // }
 
-  // // Get analytics summary
-  // async getAnalyticsSummary(startDate: string, endDate: string): Promise<AnalyticsSummary> {
+  // async getIncomeAnalyticsData(startDate: string, endDate: string): Promise<AnalyticsSummary> {
   //   const response = await apiService.get<AnalyticsSummary>(
-  //     `${this.baseUrl}/summary?startDate=${startDate}&endDate=${endDate}`
+  //     `${this.baseUrl}/income?startDate=${startDate}&endDate=${endDate}`
   //   );
-  //   return response.data;
+  //   return response;
   // }
 
-  // // Get category breakdown
-  // async getCategoryBreakdown(startDate: string, endDate: string): Promise<CategoryBreakdown[]> {
-  //   const response = await apiService.get<CategoryBreakdown[]>(
-  //     `${this.baseUrl}/categories?startDate=${startDate}&endDate=${endDate}`
-  //   );
-  //   return response.data;
-  // }
-
-  // // Get spending trends
-  // async getSpendingTrends(startDate: string, endDate: string): Promise<SpendingData[]> {
-  //   const response = await apiService.get<SpendingData[]>(
-  //     `${this.baseUrl}/trends?startDate=${startDate}&endDate=${endDate}`
-  //   );
-  //   return response.data;
-  // }
 }
 
 // Export a singleton instance

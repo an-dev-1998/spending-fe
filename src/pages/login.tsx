@@ -24,7 +24,6 @@ const Login: React.FC = () => {
   const setName = useUserStore((state) => state.setName);
   const setEmail = useUserStore((state) => state.setEmail);
   const setUserId = useUserStore((state) => state.setUserId);
-  const setAvatar = useUserStore((state) => state.setAvatar);
   
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true);
@@ -59,9 +58,6 @@ const Login: React.FC = () => {
       setName(responseData.user.name);
       setEmail(responseData.user.email);
       setUserId(responseData.user.id.toString());
-      if ('image_url' in responseData.user) {
-        setAvatar(responseData.user.image_url);
-      }
       
       console.log('Login successful, redirecting...');
       message.success(t('login.success'));

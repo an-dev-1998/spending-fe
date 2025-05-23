@@ -3,7 +3,7 @@ import { Pie } from '@ant-design/plots';
 import { useTranslation } from 'react-i18next';
 import { memo, useState } from 'react';
 import { isEqual } from 'lodash';
-import { useGetAnalytics } from '../hooks/use-hook-get-analytics';
+import { useGetIncomeAnalytics } from '../hooks/use-hook-get-income-analytics';
 import AppSelect from '../components/common/AppSelect';
 import { useGetUsers } from '../hooks/use-hook-get-users';
 import type { RangePickerProps } from 'antd/es/date-picker';
@@ -43,7 +43,7 @@ const Analytics: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<number | null>(null);
   const [dateRange, setDateRange] = useState<[dayjs.Dayjs, dayjs.Dayjs] | null>(null);
   
-  const { loading, data, error, refetch } = useGetAnalytics({
+  const { loading, data, error, refetch } = useGetIncomeAnalytics({
     startDate: dateRange?.[0],
     endDate: dateRange?.[1],
     userId: selectedUser || undefined,

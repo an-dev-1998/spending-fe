@@ -1,10 +1,15 @@
 {
     "dashboard": {
-      "title": "Bảng điều khiển"
+      "title": "Bảng điều khiển",
+      "totalIncome": "Tổng thu nhập",
+      "totalSpending": "Tổng chi tiêu",
+      "totalBalance": "Tổng số dư"
     },
     "analytics": {
       "title": "Phân tích",
-      "selectUser": "Chọn người dùng"
+      "selectUser": "Chọn người dùng",
+      "spending": "Phân tích chi tiêu",
+      "income": "Phân tích thu nhập"
     },
     "reports": "Báo cáo",
     "settings": {
@@ -147,6 +152,31 @@
       "updateSuccess": "Cập nhật hồ sơ thành công",
       "updateError": "Cập nhật hồ sơ thất bại",
       "saveChanges": "Lưu thay đổi"
+    },
+    "income": {
+      "title": "Thu nhập",
+      "description": "Mô tả",
+      "amount": "Số tiền",
+      "date": "Ngày",
+      "category": "Danh mục",
+      "categoryId": "Danh mục",
+      "categoryIdRequired": "Vui lòng chọn danh mục",
+      "selectIncomeName": "Chọn danh mục thu nhập",
+      "createSuccess": "Tạo thu nhập thành công",
+      "createError": "Tạo thu nhập thất bại",
+      "createTitle": "Tạo thu nhập",
+      "updateSuccess": "Cập nhật thu nhập thành công",
+      "updateError": "Cập nhật thu nhập thất bại",
+      "editTitle": "Chỉnh sửa thu nhập",
+      "deleteTitle": "Xóa thu nhập",
+      "deleteSuccess": "Xóa thu nhập thành công",
+      "deleteFailed": "Xóa thu nhập thất bại",
+      "createdAt": "Ngày tạo",
+      "updatedAt": "Ngày cập nhật",
+      "action": "Thao tác",
+      "dateRequired": "Vui lòng chọn ngày",
+      "amountRequired": "Vui lòng nhập số tiền",
+      "descriptionRequired": "Vui lòng nhập mô tả"
     }
   }
   

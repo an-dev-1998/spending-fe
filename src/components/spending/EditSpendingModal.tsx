@@ -22,7 +22,6 @@ const EditSpendingModal: React.FC<EditSpendingModalProps> = ({
   const [form] = Form.useForm();
   const { t } = useTranslation();
   
-  // Reset form when spending changes
   useEffect(() => {
     if (spending && visible) {
       const date = spending.date ? dayjs(spending.date) : undefined;

@@ -51,6 +51,11 @@ const Sidebar: React.FC = () => {
       icon: <MoneyCollectOutlined />
     },
     {
+      key: 'income',
+      label: t('income.title'),
+      icon: <MoneyCollectOutlined />
+    },
+    {
       key: 'category',
       label: t('category.title'),
       icon: <UnorderedListOutlined />,
@@ -68,6 +73,18 @@ const Sidebar: React.FC = () => {
         key: 'analytics',
         label: t('analytics.title'),
         icon: <BarChartOutlined />,
+        children: [
+          {
+            key: 'analytics-spending',
+            label: t('analytics.spending'),
+            icon: <MoneyCollectOutlined />,
+          },
+          {
+            key: 'analytics-income',
+            label: t('analytics.income'),
+            icon: <MoneyCollectOutlined />,
+          },
+        ],
       },
       {
         key: 'user',

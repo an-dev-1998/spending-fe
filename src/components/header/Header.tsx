@@ -27,15 +27,12 @@ const HeaderComponent: React.FC = () => {
   const clearName = useUserStore((state) => state.clearName);
   const name = useUserStore((state) => state.name);
   const role = useUserStore((state) => state.role);
-  const avatar = useUserStore((state) => state.avatar);
-  const clearAvatar = useUserStore((state) => state.clearAvatar);
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     if (key === 'logout') {
       localStorage.removeItem('token');
       clearRole();
       clearName();
-      clearAvatar();
       window.location.href = '/login';
     }
     if (key === 'profile') {
@@ -62,7 +59,7 @@ const HeaderComponent: React.FC = () => {
         <LanguageSwitcher />
         <Dropdown menu={{ items: userMenuItems, onClick: handleMenuClick }} placement="bottomRight">
           <Space style={{ cursor: 'pointer' }}>
-            <Avatar src={avatar} icon={<UserOutlined />} />
+            <Avatar src="" icon={<UserOutlined />} />
             <span>{name}</span>
             {role === 1 ? <Tag color="red">Admin</Tag> : <Tag color="blue">User</Tag>}
           </Space>
