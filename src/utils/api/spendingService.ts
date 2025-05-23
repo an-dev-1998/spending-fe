@@ -19,6 +19,12 @@ export interface Spending {
   user_id: number;
 }
 
+export interface SpendingData {
+  date: string;
+  amount: number;
+  category: string;
+}
+
 // Spending service class
 class SpendingService {
   private readonly baseUrl = '/spendings';
