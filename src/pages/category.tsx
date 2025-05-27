@@ -3,7 +3,6 @@ import AppTable from '../components/common/AppTable';
 import { Space, Button, message } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Category, categoryService } from '../utils/api';
-import dayjs from 'dayjs';
 import { useGetCategories } from '../hooks/use-hook-get-categories';
 import EditCategoryModal from '../components/category/EditCategoryModal';
 import CreateCategoryModal from '../components/category/CreateCategoryModal';
