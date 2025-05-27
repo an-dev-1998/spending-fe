@@ -13,6 +13,9 @@ interface UserState {
   userId: string | null;
   setUserId: (userId: string) => void;
   clearUserId: () => void;
+  image_url: string | null;
+  setImageUrl: (image_url: string) => void;
+  clearImageUrl: () => void;
 }
 
 const loadState = () => {
@@ -21,14 +24,16 @@ const loadState = () => {
     const name = localStorage.getItem('userName');
     const email = localStorage.getItem('userEmail');
     const userId = localStorage.getItem('userId');
+    const image_url = localStorage.getItem('image_url');
     return {
       role: role ? parseInt(role) : null,
       name: name || null,
       email: email || null,
       userId: userId || null,
+      image_url: image_url || null,
     };
   } catch (error) {
-    return { role: null, name: null, email: null, userId: null };
+    return { role: null, name: null, email: null, userId: null, image_url: null };
   }
 };
 
@@ -65,5 +70,13 @@ export const useUserStore = create<UserState>((set) => ({
   clearUserId: () => {
     localStorage.removeItem('userId');
     set({ userId: null });
+  },
+  setImageUrl: (image_url: string) => {
+    localStorage.setItem('image_url', image_url);
+    set({ image_url });
+  },
+  clearImageUrl: () => {
+    localStorage.removeItem('image_url');
+    set({ image_url: null });
   },
 })); 

@@ -149,14 +149,14 @@
         "avatarUpdateError": "Failed to update avatar",
         "updateSuccess": "Profile updated successfully",
         "updateError": "Failed to update profile",
-        "saveChanges": "Save Changes"
+        "saveChanges": "Save Changes",
+        "linkAvatar": "Link Avatar"
     },
     "income": {
         "title": "Income",
         "description": "Description",
         "amount": "Amount",
         "date": "Date",
-        "category": "Category",
         "categoryId": "Category",
         "categoryIdRequired": "Please select a category",
         "selectIncomeName": "Select income category",
@@ -177,7 +177,10 @@
         "delete": "Delete Income",
         "dateRequired": "Please select a date",
         "amountRequired": "Please enter an amount",
-        "descriptionRequired": "Please enter a description"
+        "descriptionRequired": "Please enter a description",
+        "category": {
+            "name": "Category"
+        }
     },
     "notification": {
         "title": "Notifications",

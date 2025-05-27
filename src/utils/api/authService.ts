@@ -9,6 +9,7 @@ export interface AuthResponse {
       created_at: string;
       updated_at: string;
       role: number;
+      image_url: string;
     };
     token: string;
   };

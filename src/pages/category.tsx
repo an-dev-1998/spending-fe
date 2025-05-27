@@ -37,18 +37,6 @@ const CategoryPage: React.FC = () => {
       dataIndex: 'description',
       key: 'description',
     },
-    {
-      title: t('category.createdAt'),
-      dataIndex: 'created_at',
-      key: 'created_at',
-      render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
-    },
-    {
-      title: t('category.updatedAt'),
-      dataIndex: 'updated_at',
-      key: 'updated_at',
-      render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
-    },
   ];
 
   const actionColumn = {

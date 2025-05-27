@@ -53,10 +53,9 @@ const IncomePage: React.FC = () => {
       render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
     },
     {
-      title: t("income.createdAt"),
-      dataIndex: 'created_at',
-      key: 'created_at',
-      render: (date: string) => dayjs(date).format('DD-MM-YYYY HH:mm'),
+      title: t("income.category.name"),
+      dataIndex: ['category', 'name'],
+      key: 'category.name',
     },
   ];
 

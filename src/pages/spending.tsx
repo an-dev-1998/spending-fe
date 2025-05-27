@@ -65,12 +65,6 @@ const SpendingPage: React.FC = () => {
       dataIndex: ['category', 'name'],
       key: 'category.name',
     },
-    {
-      title: t("spending.createdAt"),
-      dataIndex: 'created_at',
-      key: 'created_at',
-      render: (date: string) => dayjs(date).format('DD-MM-YYYY HH:mm'),
-    },
     ...(role !== 1 ? [{
       title: t("spending.action"),
       key: 'action',

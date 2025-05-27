@@ -24,15 +24,14 @@ const Login: React.FC = () => {
   const setName = useUserStore((state) => state.setName);
   const setEmail = useUserStore((state) => state.setEmail);
   const setUserId = useUserStore((state) => state.setUserId);
+  const setImageUrl = useUserStore((state) => state.setImageUrl);
   
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true);
     try {
       console.log('Starting login process...');
       await fetchSanctumCsrfToken();
-      console.log('CSRF token fetched successfully');
       
-      console.log('Attempting login with:', { email: values.email });
       const response = await authService.login({
         email: values.email,
         password: values.password
@@ -57,8 +56,8 @@ const Login: React.FC = () => {
       setName(responseData.user.name);
       setEmail(responseData.user.email);
       setUserId(responseData.user.id.toString());
-      
-      console.log('Login successful, redirecting...');
+      setImageUrl(responseData.user.image_url);
+
       message.success(t('login.success'));
       const from = (location.state as any)?.from?.pathname || '/dashboard';
       navigate(from, { replace: true });

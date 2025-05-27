@@ -10,6 +10,8 @@ const { Title } = Typography;
 interface ProfileFormValues {
     name: string;
     email: string;
+    link_avatar: string;
+    role: number;
 }
 
 const AccountPage: React.FC = () => {
@@ -21,6 +23,8 @@ const AccountPage: React.FC = () => {
     const email = useUserStore((state) => state.email);
     const setEmail = useUserStore((state) => state.setEmail);
     const userId = useUserStore((state) => state.userId);
+    const image_url = useUserStore((state) => state.image_url);
+    const setImageUrl = useUserStore((state) => state.setImageUrl);
 
     const handleSubmit = async (values: ProfileFormValues) => {
         setLoading(true);
@@ -31,11 +35,13 @@ const AccountPage: React.FC = () => {
             await userService.updateUser(userId, {
                 name: values.name,
                 email: values.email,
+                image_url: values.link_avatar,
                 role: 2
             });
 
             setName(values.name);
             setEmail(values.email);
+            setImageUrl(values.link_avatar);
             message.success(t('account.updateSuccess'));
         } catch (error) {
             console.error('Error updating user:', error);
@@ -57,7 +63,8 @@ const AccountPage: React.FC = () => {
                         onFinish={handleSubmit}
                         initialValues={{
                             name: name || '',
-                            email: email || ''
+                            email: email || '',
+                            link_avatar: image_url || ''
                         }}
                     >
                         <Form.Item
@@ -77,6 +84,13 @@ const AccountPage: React.FC = () => {
                             ]}
                         >
                             <Input prefix={<MailOutlined />} />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="link_avatar"
+                            label={t('account.linkAvatar')}
+                        >
+                            <Input prefix={<UserOutlined />} />
                         </Form.Item>
 
                         <Form.Item>

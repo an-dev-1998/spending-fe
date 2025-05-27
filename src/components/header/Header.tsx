@@ -28,8 +28,11 @@ const userMenuItems: MenuProps['items'] = [
 const HeaderComponent: React.FC = () => {
   const clearRole = useUserStore((state) => state.clearRole);
   const clearName = useUserStore((state) => state.clearName);
+  const clearImageUrl = useUserStore((state) => state.clearImageUrl);
   const name = useUserStore((state) => state.name);
   const role = useUserStore((state) => state.role);
+  const image_url = useUserStore((state) => state.image_url);
+  console.log(image_url);
   const { notifications, markAsRead, refetch, markAllAsRead } = useGetNotifications();
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
@@ -37,6 +40,7 @@ const HeaderComponent: React.FC = () => {
       localStorage.removeItem('token');
       clearRole();
       clearName();
+      clearImageUrl();
       window.location.href = '/login';
     }
     if (key === 'profile') {
@@ -72,7 +76,7 @@ const HeaderComponent: React.FC = () => {
         <LanguageSwitcher />
         <Dropdown menu={{ items: userMenuItems, onClick: handleMenuClick }} placement="bottomRight">
           <Space style={{ cursor: 'pointer' }}>
-            <Avatar src="" icon={<UserOutlined />} />
+            <Avatar src={image_url} icon={<UserOutlined />} />
             <span>{name}</span>
             {role === 1 ? <Tag color="red">Admin</Tag> : <Tag color="blue">User</Tag>}
           </Space>
