@@ -75,6 +75,16 @@ export const useGetNotifications = () => {
     }
   };
 
+  const markAllAsRead = async () => {
+    try {
+      await apiService.post('/notifications/mark-all-as-read');
+      setNotifications(prev => prev.map(notification => ({ ...notification, read: true })));
+    } catch (error) {
+      message.error('Failed to mark all notifications as read');
+      console.error('Error marking all notifications as read:', error);
+    }
+  };
+
   useEffect(() => {
     fetchNotifications();
   }, []);
@@ -85,5 +95,6 @@ export const useGetNotifications = () => {
     error,
     refetch: fetchNotifications,
     markAsRead,
+    markAllAsRead,
   };
 }; 

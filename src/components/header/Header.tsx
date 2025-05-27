@@ -30,7 +30,7 @@ const HeaderComponent: React.FC = () => {
   const clearName = useUserStore((state) => state.clearName);
   const name = useUserStore((state) => state.name);
   const role = useUserStore((state) => state.role);
-  const { notifications, markAsRead, refetch } = useGetNotifications();
+  const { notifications, markAsRead, refetch, markAllAsRead } = useGetNotifications();
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     if (key === 'logout') {
@@ -67,6 +67,7 @@ const HeaderComponent: React.FC = () => {
           notifications={notifications}
           onNotificationClick={handleNotificationClick}
           onRefresh={refetch}
+          onMarkAllAsRead={markAllAsRead}
         />
         <LanguageSwitcher />
         <Dropdown menu={{ items: userMenuItems, onClick: handleMenuClick }} placement="bottomRight">

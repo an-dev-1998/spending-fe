@@ -15,12 +15,14 @@ interface NotificationPopupProps {
   notifications: Notification[];
   onNotificationClick?: (notification: Notification) => void;
   onRefresh?: () => void;
+  onMarkAllAsRead?: () => void;
 }
 
 const NotificationPopup: React.FC<NotificationPopupProps> = ({
   notifications,
   onNotificationClick,
   onRefresh,
+  onMarkAllAsRead,
 }) => {
   const { t } = useTranslation();
   const unreadCount = notifications.filter(n => !n.read).length;
@@ -64,7 +66,15 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({
     <Space style={{ width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
       <span>{t('notification.title')}</span>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-        <Button style={{ borderRadius: '32px' }}>{t('notification.markAllAsRead')}</Button>
+        <Button 
+          style={{ color: 'red' }} 
+          onClick={(e) => {
+            e.stopPropagation();
+            onMarkAllAsRead?.();
+          }}
+        >
+          {t('notification.markAllAsRead')}
+        </Button>
         <Button
           type="text"
           icon={<ReloadOutlined />}
