@@ -11,7 +11,6 @@
       "spending": "Phân tích chi tiêu",
       "income": "Phân tích thu nhập"
     },
-    "reports": "Báo cáo",
     "settings": {
       "title": "Cài đặt",
       "notifications": "Bật thông báo",
@@ -21,8 +20,6 @@
       "reset": "Đặt lại",
       "saveSuccess": "Lưu cài đặt thành công"
     },
-    "spendings": "Chi tiêu",
-    "categories": "Danh mục",
     "login": {
       "welcomeBack": "Chào mừng trở lại",
       "pleaseSignIn": "Vui lòng đăng nhập để tiếp tục",
@@ -180,6 +177,13 @@
       "dateRequired": "Vui lòng chọn ngày",
       "amountRequired": "Vui lòng nhập số tiền",
       "descriptionRequired": "Vui lòng nhập mô tả"
+    },
+    "notification": {
+      "title": "Thông báo",
+      "notifications": "Thông báo",
+      "notificationsEmpty": "Không có thông báo",
+      "notificationsError": "Lỗi khi lấy thông báo",
+      "markAllAsRead": "Đọc tất cả"
     }
   }
   

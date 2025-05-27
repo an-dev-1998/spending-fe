@@ -1,9 +1,12 @@
 import React from 'react';
-import { Layout, Button, Typography, Space, Avatar, Dropdown, Tag } from 'antd';
-import { UserOutlined, BellOutlined } from '@ant-design/icons';
+import { Layout, Typography, Space, Avatar, Dropdown, Tag } from 'antd';
+import { MoneyCollectTwoTone, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import LanguageSwitcher from '../common/LanguageSwitch';
 import { useUserStore } from '../../store/userStore';
+import NotificationPopup from '../notifications/NotificationPopup';
+import { useGetNotifications, Notification } from '../../hooks/use-hook-get-notifications';
+
 const { Header } = Layout;
 const { Title } = Typography;
 
@@ -27,6 +30,7 @@ const HeaderComponent: React.FC = () => {
   const clearName = useUserStore((state) => state.clearName);
   const name = useUserStore((state) => state.name);
   const role = useUserStore((state) => state.role);
+  const { notifications, markAsRead, refetch } = useGetNotifications();
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
     if (key === 'logout') {
@@ -40,10 +44,14 @@ const HeaderComponent: React.FC = () => {
     }
   };
 
+  const handleNotificationClick = (notification: Notification) => {
+    markAsRead(notification.id);
+  };
+
   return (
-    <Header style={{ 
-      display: 'flex', 
-      alignItems: 'center', 
+    <Header style={{
+      display: 'flex',
+      alignItems: 'center',
       justifyContent: 'space-between',
       background: '#fff',
       padding: '0 24px',
@@ -53,9 +61,13 @@ const HeaderComponent: React.FC = () => {
       zIndex: 1,
       backgroundImage: 'linear-gradient(45deg, pink, transparent)'
     }}>
-      <Title level={4} style={{ margin: 0 }}>Spending</Title>
+      <Title level={4} style={{ margin: 0 }}><MoneyCollectTwoTone /></Title>
       <Space size="middle">
-        <Button type="text" icon={<BellOutlined />} />
+        <NotificationPopup 
+          notifications={notifications}
+          onNotificationClick={handleNotificationClick}
+          onRefresh={refetch}
+        />
         <LanguageSwitcher />
         <Dropdown menu={{ items: userMenuItems, onClick: handleMenuClick }} placement="bottomRight">
           <Space style={{ cursor: 'pointer' }}>
