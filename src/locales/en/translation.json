@@ -3,7 +3,8 @@
         "title": "Dashboard",
         "totalIncome": "Total Income",
         "totalSpending": "Total Spending",
-        "totalBalance": "Total Balance"
+        "totalBalance": "Total Balance",
+        "totalPerDay": "Total Spending / Day"
     },
     "analytics": {
         "title": "Analytics",

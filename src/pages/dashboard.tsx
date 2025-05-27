@@ -4,6 +4,7 @@ import { Row } from 'antd';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGetDashboards } from '../hooks/use-hook-get-dashboards';
+import { CURRENCY } from '../constans';
 
 const Dashboard: React.FC = () => {
   const { t } = useTranslation();
@@ -19,19 +20,24 @@ const Dashboard: React.FC = () => {
       </h2>
       {error && <div style={{ color: 'red', marginBottom: '16px' }}>{error}</div>}
       <Row gutter={[24, 24]}>
-        <Col span={12}>
+        <Col xs={24} sm={12}>
           <Card style={{ borderRadius: 16 }} title={t('dashboard.totalIncome')} variant="borderless" loading={loading}>
-            <Tag color="green">{formatCurrency(data.totalIncome)}</Tag>
+            <Tag color="green" style={{ borderRadius: 32 }}>{formatCurrency(data.totalIncome)} {CURRENCY}</Tag>
           </Card>
         </Col>
-        <Col span={12}>
+        <Col xs={24} sm={12}>
           <Card style={{ borderRadius: 16 }} title={t('dashboard.totalSpending')} variant="borderless" loading={loading}>
-            <Tag color="red">{formatCurrency(data.totalSpending)}</Tag>
+            <Tag color="red" style={{ borderRadius: 32 }}>{formatCurrency(data.totalSpending)} {CURRENCY}</Tag>
           </Card>
         </Col>
-        <Col span={24}>
+        <Col xs={24} sm={12}>
           <Card style={{ borderRadius: 16 }} title={t('dashboard.totalBalance')} variant="borderless" loading={loading}>
-            <Tag color="blue">{formatCurrency(data.totalBalance)}</Tag>
+            <Tag color="blue" style={{ borderRadius: 32 }}>{formatCurrency(data.totalBalance)} {CURRENCY}</Tag>
+          </Card>
+        </Col>
+        <Col xs={24} sm={12}>
+          <Card style={{ borderRadius: 16 }} title={t('dashboard.totalPerDay')} variant="borderless" loading={loading}>
+            <Tag color="magenta" style={{ borderRadius: 32 }}>{formatCurrency(data.totalPerDay)} {CURRENCY}</Tag>
           </Card>
         </Col>
       </Row>

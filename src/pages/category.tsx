@@ -9,6 +9,7 @@ import EditCategoryModal from '../components/category/EditCategoryModal';
 import CreateCategoryModal from '../components/category/CreateCategoryModal';
 import DeleteItemModal from '../components/common/DeleteItemModal';
 import { useTranslation } from 'react-i18next';
+import { useUserStore } from '../store/userStore';
 
 const CategoryPage: React.FC = () => {
   const { loading, categories, pagination, handleTableChange } = useGetCategories();
@@ -17,6 +18,7 @@ const CategoryPage: React.FC = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const { t } = useTranslation();
+  const userRole = useUserStore((state) => state.role);
 
   useEffect(() => {
     if (!isEditModalOpen && !isDeleteModalOpen) {
@@ -24,7 +26,7 @@ const CategoryPage: React.FC = () => {
     }
   }, [isEditModalOpen, isDeleteModalOpen]);
 
-  const columns = [
+  const baseColumns = [
     {
       title: t('category.name'),
       dataIndex: 'name',
@@ -47,17 +49,20 @@ const CategoryPage: React.FC = () => {
       key: 'updated_at',
       render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
     },
-    {
-      title: t('category.action'),
-      key: 'action',
-      render: (_: any, record: Category) => (
-        <Space size="middle">
-          <a onClick={() => handleEdit(record)}><EditOutlined /></a>
-          <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
-        </Space>
-      ),
-    },
   ];
+
+  const actionColumn = {
+    title: t('category.action'),
+    key: 'action',
+    render: (_: any, record: Category) => (
+      <Space size="middle">
+        <a onClick={() => handleEdit(record)}><EditOutlined /></a>
+        <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
+      </Space>
+    ),
+  };
+
+  const columns = userRole === 1 ? baseColumns : [...baseColumns, actionColumn];
 
   const handleEdit = (category: Category) => {
     setSelectedCategory(category);

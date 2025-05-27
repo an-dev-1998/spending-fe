@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppTable from '../components/common/AppTable';
-import { Space, Button, message, DatePicker } from 'antd';
+import { Space, Button, message, DatePicker, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Income, incomeService } from '../utils/api';
 import dayjs from 'dayjs';
@@ -10,6 +10,8 @@ import CreateIncomeModal from '../components/income/CreateIncomeModal';
 import DeleteItemModal from '../components/common/DeleteItemModal';
 import { useTranslation } from 'react-i18next';
 import type { RangePickerProps } from 'antd/es/date-picker';
+import { CURRENCY } from '../constans';
+import { useUserStore } from '../store/userStore';
 
 const IncomePage: React.FC = () => {
   const { loading, incomes, pagination, handleTableChange, handleDateRangeChange } = useGetIncomes();
@@ -18,6 +20,7 @@ const IncomePage: React.FC = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedIncome, setSelectedIncome] = useState<Income | null>(null);
   const { t } = useTranslation();
+  const userRole = useUserStore((state) => state.role);
 
   useEffect(() => {
     if (!isEditModalOpen && !isDeleteModalOpen) {
@@ -25,7 +28,7 @@ const IncomePage: React.FC = () => {
     }
   }, [isEditModalOpen, isDeleteModalOpen]);
 
-  const columns = [
+  const baseColumns = [
     {
       title: t("income.description"),
       dataIndex: 'description',
@@ -37,10 +40,10 @@ const IncomePage: React.FC = () => {
       key: 'amount',
       render: (amount: string) => {
         const formattedAmount = parseFloat(amount).toLocaleString('en-US', {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
         });
-        return formattedAmount;
+        return <><Tag style={{ borderRadius: 32 }} color="gray">{formattedAmount} {CURRENCY}</Tag></>;
       }
     },
     {
@@ -55,17 +58,20 @@ const IncomePage: React.FC = () => {
       key: 'created_at',
       render: (date: string) => dayjs(date).format('DD-MM-YYYY HH:mm'),
     },
-    {
-      title: t("income.action"),
-      key: 'action',
-      render: (_: any, record: Income) => (
-        <Space size="middle">
-          <a onClick={() => handleEdit(record)}><EditOutlined /></a>
-          <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
-        </Space>
-      ),
-    },
   ];
+
+  const actionColumn = {
+    title: t("income.action"),
+    key: 'action',
+    render: (_: any, record: Income) => (
+      <Space size="middle">
+        <a onClick={() => handleEdit(record)}><EditOutlined /></a>
+        <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
+      </Space>
+    ),
+  };
+
+  const columns = userRole === 1 ? baseColumns : [...baseColumns, actionColumn];
 
   const handleEdit = (income: Income) => {
     setSelectedIncome(income);

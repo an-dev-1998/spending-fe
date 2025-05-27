@@ -1,4 +1,4 @@
-import { Spin, DatePicker } from 'antd';
+import { Spin, DatePicker, Tag } from 'antd';
 import { Pie } from '@ant-design/plots';
 import { useTranslation } from 'react-i18next';
 import { memo, useState } from 'react';
@@ -8,6 +8,7 @@ import AppSelect from '../components/common/AppSelect';
 import { useGetUsers } from '../hooks/use-hook-get-users';
 import type { RangePickerProps } from 'antd/es/date-picker';
 import dayjs from 'dayjs';
+import { CURRENCY } from '../constans';
 
 interface PieData {
   type: string;
@@ -26,8 +27,12 @@ const DemoPie = memo<DemoPieProps>(
       angleField: 'value',
       colorField: 'type',
       label: {
-        text: (d: any) => `${d.value.toFixed(2)}`,
+        text: (d: any) => `${d.value.toLocaleString()} ${CURRENCY}`,
         position: 'outside',
+        style: {
+          fontSize: 12,
+          fontWeight: 'bold',
+        },
       },
       onReady,
     };

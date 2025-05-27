@@ -3,7 +3,8 @@
       "title": "Bảng điều khiển",
       "totalIncome": "Tổng thu nhập",
       "totalSpending": "Tổng chi tiêu",
-      "totalBalance": "Tổng số dư"
+      "totalBalance": "Tổng số dư",
+      "totalPerDay": "Tổng chi tiêu tối đa / ngày"
     },
     "analytics": {
       "title": "Phân tích",

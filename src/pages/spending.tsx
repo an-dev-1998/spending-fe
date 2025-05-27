@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppTable from '../components/common/AppTable';
-import { Space, Button, message, DatePicker } from 'antd';
+import { Space, Button, message, DatePicker, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Spending, spendingService } from '../utils/api';
 import dayjs from 'dayjs';
@@ -10,6 +10,8 @@ import CreateSpendingModal from '../components/spending/CreateSpendingModal';
 import DeleteItemModal from '../components/common/DeleteItemModal';
 import { useTranslation } from 'react-i18next';
 import type { RangePickerProps } from 'antd/es/date-picker';
+import { CURRENCY } from '../constans';
+import { useUserStore } from '../store/userStore';
 
 const SpendingPage: React.FC = () => {
   const { loading, spendings, pagination, handleTableChange, handleDateRangeChange } = useGetSpendings();
@@ -18,6 +20,7 @@ const SpendingPage: React.FC = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedSpending, setSelectedSpending] = useState<Spending | null>(null);
   const { t } = useTranslation();
+  const role = useUserStore((state) => state.role);
 
   useEffect(() => {
     if (!isEditModalOpen && !isDeleteModalOpen) {
@@ -45,10 +48,10 @@ const SpendingPage: React.FC = () => {
       key: 'amount',
       render: (amount: string) => {
         const formattedAmount = parseFloat(amount).toLocaleString('en-US', {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
         });
-        return formattedAmount;
+        return <><Tag style={{ borderRadius: 32 }} color="gray">{formattedAmount} {CURRENCY}</Tag></>;
       }
     },
     {
@@ -68,7 +71,7 @@ const SpendingPage: React.FC = () => {
       key: 'created_at',
       render: (date: string) => dayjs(date).format('DD-MM-YYYY HH:mm'),
     },
-    {
+    ...(role !== 1 ? [{
       title: t("spending.action"),
       key: 'action',
       render: (_: any, record: Spending) => (
@@ -77,7 +80,7 @@ const SpendingPage: React.FC = () => {
           <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
         </Space>
       ),
-    },
+    }] : []),
   ];
 
   const handleEdit = (spending: Spending) => {

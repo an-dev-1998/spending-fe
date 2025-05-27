@@ -6,6 +6,7 @@ interface DashboardData {
   totalSpending: number;
   totalIncome: number;
   totalBalance: number;
+  totalPerDay: number;
 }
 
 export const useGetDashboards = () => {
@@ -13,7 +14,8 @@ export const useGetDashboards = () => {
   const [data, setData] = useState<DashboardData>({
     totalSpending: 0,
     totalIncome: 0,
-    totalBalance: 0
+    totalBalance: 0,
+    totalPerDay: 0
   });
   const [error, setError] = useState<string | null>(null);
 

@@ -9,6 +9,7 @@ import EditUserModal from '../components/user/EditUserModal';
 import CreateUserModal from '../components/user/CreateUserModal';
 import DeleteItemModal from '../components/common/DeleteItemModal';
 import { useTranslation } from 'react-i18next';
+import { useUserStore } from '../store/userStore';
 
 const UserPage: React.FC = () => {
   const { loading, users, pagination, handleTableChange } = useGetUsers();
@@ -17,8 +18,9 @@ const UserPage: React.FC = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const { t } = useTranslation();
+  const userRole = useUserStore((state) => state.role);
 
-  const columns = [
+  const baseColumns = [
     {
       title: t("user.name"),
       dataIndex: 'name',
@@ -41,17 +43,20 @@ const UserPage: React.FC = () => {
       key: 'updated_at',
       render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
     },
-    {
-      title: t("user.action"),
-      key: 'action',
-      render: (_: any, record: User) => (
-        <Space size="middle">
-          <a onClick={() => handleEdit(record)}><EditOutlined /></a>
-          <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
-        </Space>
-      ),
-    },
   ];
+
+  const actionColumn = {
+    title: t("user.action"),
+    key: 'action',
+    render: (_: any, record: User) => (
+      <Space size="middle">
+        <a onClick={() => handleEdit(record)}><EditOutlined /></a>
+        <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
+      </Space>
+    ),
+  };
+
+  const columns = userRole === 1 ? baseColumns : [...baseColumns, actionColumn];
 
   const handleEdit = (user: User) => {
     setSelectedUser(user);
