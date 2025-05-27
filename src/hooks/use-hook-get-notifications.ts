@@ -10,7 +10,6 @@ export interface Notification {
   read: boolean;
 }
 
-// Helper function to get read status from localStorage
 const getReadStatusFromStorage = (): Record<number, boolean> => {
   try {
     const stored = localStorage.getItem('notificationReadStatus');
@@ -20,7 +19,6 @@ const getReadStatusFromStorage = (): Record<number, boolean> => {
   }
 };
 
-// Helper function to save read status to localStorage
 const saveReadStatusToStorage = (readStatus: Record<number, boolean>) => {
   try {
     localStorage.setItem('notificationReadStatus', JSON.stringify(readStatus));
@@ -40,7 +38,6 @@ export const useGetNotifications = () => {
       const response = await apiService.get<Notification[]>('/notifications');
       const readStatus = getReadStatusFromStorage();
       
-      // Merge API response with stored read status
       const notificationsWithReadStatus = response.map(notification => ({
         ...notification,
         read: readStatus[notification.id] || notification.read
@@ -61,7 +58,6 @@ export const useGetNotifications = () => {
     try {
       await apiService.post(`/notifications/${notificationId}/mark-as-read`);
       
-      // Update local state
       setNotifications(prev => 
         prev.map(notification => 
           notification.id === notificationId 
@@ -70,7 +66,6 @@ export const useGetNotifications = () => {
         )
       );
 
-      // Update localStorage
       const readStatus = getReadStatusFromStorage();
       readStatus[notificationId] = true;
       saveReadStatusToStorage(readStatus);

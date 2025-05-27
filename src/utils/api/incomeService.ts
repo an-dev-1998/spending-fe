@@ -1,6 +1,5 @@
 import { apiService, PaginatedResponse } from './apiService';
 
-// Income interface
 export interface Income {
   id: string;
   date: string;
@@ -26,11 +25,9 @@ export interface IncomeFilters {
   endDate?: string;
 }
 
-// Income service class
 class IncomeService {
   private readonly baseUrl = '/incomes';
 
-  // Get all incomes with pagination and filters
   async getIncomes(filters?: IncomeFilters): Promise<Income[] | PaginatedResponse<Income>> {
     const queryParams = new URLSearchParams();
     
@@ -54,26 +51,21 @@ class IncomeService {
     return response;
   }
 
-  // Get income by ID
   async getIncomeById(id: number): Promise<Income> {
     return await apiService.get<Income>(`${this.baseUrl}/${id}`);
   }
 
-  // Create a new income
   async createIncome(incomeData: Partial<Income>): Promise<Income> {
     return await apiService.post<Income>(this.baseUrl, incomeData);
   }
 
-  // Update an existing income
   async updateIncome(id: number, incomeData: Partial<Income>): Promise<Income> {
     return await apiService.put<Income>(`${this.baseUrl}/${id}`, incomeData);
   }
 
-  // Delete an income
   async deleteIncome(id: number): Promise<void> {
     await apiService.delete<void>(`${this.baseUrl}/${id}`);
   }
 }
 
-// Export a singleton instance
 export const incomeService = new IncomeService(); 

@@ -82,7 +82,6 @@ const CategoryPage: React.FC = () => {
   };
 
   const handleSuccess = () => {
-    // Refresh the categories list
     handleTableChange(pagination);
   };
 

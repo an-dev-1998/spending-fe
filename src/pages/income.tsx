@@ -90,7 +90,6 @@ const IncomePage: React.FC = () => {
   };
 
   const handleSuccess = () => {
-    // Refresh the Incomes list
     handleTableChange(pagination);
   };
 

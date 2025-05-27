@@ -77,7 +77,6 @@ const UserPage: React.FC = () => {
   };
 
   const handleSuccess = () => {
-    // Refresh the users list
     handleTableChange(pagination);
   };
 

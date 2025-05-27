@@ -18,7 +18,6 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
 }) => {
   const [form] = Form.useForm();
 
-  // Reset form when category changes
   useEffect(() => {
     if (category && visible) {
       form.setFieldsValue({

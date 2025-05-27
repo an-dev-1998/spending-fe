@@ -44,7 +44,6 @@ const Login: React.FC = () => {
         throw new Error(t('login.invalidResponse'));
       }
 
-      // Handle nested data structure
       const responseData = response.data || response;
       
       if (!responseData.token || !responseData.user) {

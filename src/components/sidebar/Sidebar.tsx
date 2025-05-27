@@ -30,13 +30,10 @@ const Sidebar: React.FC = () => {
       setCollapsed(window.innerWidth < 768);
     };
 
-    // Set initial state
     handleResize();
 
-    // Add event listener
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 

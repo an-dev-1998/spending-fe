@@ -103,7 +103,6 @@ const SpendingPage: React.FC = () => {
   };
 
   const handleSuccess = () => {
-    // Refresh the Spendings list
     handleTableChange(pagination);
   };
 

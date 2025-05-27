@@ -1,14 +1,12 @@
 import { apiClient } from './config';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-// Generic type for API response
 export interface ApiResponse<T> {
   data: T;
   message?: string;
   status: number;
 }
 
-// Generic type for paginated response
 export interface PaginatedResponse<T> {
   data: T[];
   total: number;
@@ -17,9 +15,7 @@ export interface PaginatedResponse<T> {
   totalPages: number;
 }
 
-// Common API service class
 class ApiService {
-  // Generic GET request
   async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     try {
       const response: AxiosResponse<ApiResponse<T>> = await apiClient.get(url, config);
@@ -30,7 +26,6 @@ class ApiService {
     }
   }
 
-  // Generic POST request
   async post<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
     try {
       console.log('ApiService: Making POST request to', url);
@@ -38,13 +33,11 @@ class ApiService {
       console.log('ApiService: Raw response:', response);
       console.log('ApiService: Response data:', response.data);
       
-      // Check if the response follows the standard ApiResponse format
       const responseData = response.data as any;
       if (responseData && typeof responseData === 'object' && 'data' in responseData && 'status' in responseData) {
         return responseData.data;
       }
       
-      // If not, return the response data directly
       return response.data;
     } catch (error: any) {
       console.error('ApiService: Error in POST request:', {
@@ -58,7 +51,6 @@ class ApiService {
     }
   }
 
-  // Generic PUT request
   async put<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
     try {
       const response: AxiosResponse<ApiResponse<T>> = await apiClient.put(url, data, config);
@@ -69,7 +61,6 @@ class ApiService {
     }
   }
 
-  // Generic DELETE request
   async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     try {
       const response: AxiosResponse<ApiResponse<T>> = await apiClient.delete(url, config);
@@ -80,7 +71,6 @@ class ApiService {
     }
   }
 
-  // Generic PATCH request
   async patch<T>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T> {
     try {
       const response: AxiosResponse<ApiResponse<T>> = await apiClient.patch(url, data, config);
@@ -91,25 +81,19 @@ class ApiService {
     }
   }
 
-  // Error handling
   private handleError(error: any): void {
     if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
       console.error('API Error Response:', {
         status: error.response.status,
         data: error.response.data,
         headers: error.response.headers,
       });
     } else if (error.request) {
-      // The request was made but no response was received
       console.error('API Request Error:', error.request);
     } else {
-      // Something happened in setting up the request that triggered an Error
       console.error('API Error:', error.message);
     }
   }
 }
 
-// Export a singleton instance
 export const apiService = new ApiService(); 

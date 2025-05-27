@@ -9,7 +9,6 @@ interface UploadResponse {
 class UploadService {
   private readonly baseUrl = '/upload';
 
-  // Upload a single file
   async uploadFile(file: File): Promise<{ url: string }> {
     console.log('UploadService: Starting file upload...');
     const formData = new FormData();
@@ -35,7 +34,6 @@ class UploadService {
     }
   }
 
-  // Upload multiple files
   async uploadMultipleFiles(files: File[]): Promise<{ url: string }[]> {
     const formData = new FormData();
     files.forEach((file) => {

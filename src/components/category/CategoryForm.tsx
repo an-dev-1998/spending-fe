@@ -8,7 +8,6 @@ interface CategoryFormProps {
 }
 
 const CategoryForm: React.FC<CategoryFormProps> = ({ form, initialValues }) => {
-  // Update form values when initialValues change
   useEffect(() => {
     if (initialValues) {
       form.setFieldsValue(initialValues);

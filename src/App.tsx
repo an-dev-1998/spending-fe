@@ -7,10 +7,8 @@ import { initializeAuth } from './utils/api/sanctum';
 import './assets/app.css';
 import './i18n';
 
-// Lazy load pages
 const pages = import.meta.glob('./pages/*.tsx');
 
-// Loading component with Antd Spin
 const LoadingFallback = () => (
   <div style={{ 
     display: 'flex', 
@@ -25,7 +23,6 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Generate routes from pages
 const routeElements = Object.entries(pages).map(([path, lazyImport]) => {
   const routePath = path
     .replace('./pages/', '/')           
@@ -58,7 +55,6 @@ const routeElements = Object.entries(pages).map(([path, lazyImport]) => {
 });
 
 const App: React.FC = () => {
-  // Initialize authentication when the app starts
   useEffect(() => {
     initializeAuth();
   }, []);

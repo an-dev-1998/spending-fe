@@ -15,7 +15,6 @@ interface UserState {
   clearUserId: () => void;
 }
 
-// Load initial state from localStorage
 const loadState = () => {
   try {
     const role = localStorage.getItem('userRole');
