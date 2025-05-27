@@ -1,4 +1,4 @@
-import { Spin, DatePicker, Tag } from 'antd';
+import { Spin, DatePicker } from 'antd';
 import { Pie } from '@ant-design/plots';
 import { useTranslation } from 'react-i18next';
 import { memo, useState } from 'react';
