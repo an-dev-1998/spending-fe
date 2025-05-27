@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, Form, Input, Button, message, Typography, Tabs } from 'antd';
+import { Card, Form, Input, Button, message, Typography, Tabs, Image } from 'antd';
 import { UserOutlined, MailOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '../store/userStore';
@@ -17,6 +17,7 @@ interface ProfileFormValues {
 const AccountPage: React.FC = () => {
     const [form] = Form.useForm();
     const [loading, setLoading] = useState(false);
+    const [previewImageUrl, setPreviewImageUrl] = useState('');
     const { t } = useTranslation();
     const name = useUserStore((state) => state.name);
     const setName = useUserStore((state) => state.setName);
@@ -42,6 +43,7 @@ const AccountPage: React.FC = () => {
             setName(values.name);
             setEmail(values.email);
             setImageUrl(values.link_avatar);
+            setPreviewImageUrl(values.link_avatar);
             message.success(t('account.updateSuccess'));
         } catch (error) {
             console.error('Error updating user:', error);
@@ -65,6 +67,11 @@ const AccountPage: React.FC = () => {
                             name: name || '',
                             email: email || '',
                             link_avatar: image_url || ''
+                        }}
+                        onValuesChange={(changedValues) => {
+                            if (changedValues.link_avatar !== undefined) {
+                                setPreviewImageUrl(changedValues.link_avatar);
+                            }
                         }}
                     >
                         <Form.Item
@@ -97,6 +104,12 @@ const AccountPage: React.FC = () => {
                             <Button type="primary" htmlType="submit" loading={loading}>
                                 {t('account.saveChanges')}
                             </Button>
+                        </Form.Item>
+                        <Form.Item>
+                            <Image
+                                width={200}
+                                src={previewImageUrl || image_url || ''}
+                            />
                         </Form.Item>
                     </Form>
                 </Card>
