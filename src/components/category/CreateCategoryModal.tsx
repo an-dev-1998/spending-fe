@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal, Form, message } from 'antd';
+import { Modal, Form, notification } from 'antd';
 import { categoryService } from '../../utils/api';
 import CategoryForm from './CategoryForm';
+import { useTranslation } from 'react-i18next';
 
 interface CreateCategoryModalProps {
   visible: boolean;
@@ -15,23 +16,29 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
   onSuccess,
 }) => {
   const [form] = Form.useForm();
-
+  const { t } = useTranslation();
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
       await categoryService.createCategory(values);
-      message.success('Category created successfully');
+      notification.success({
+        message: t('category.createSuccess'),
+        duration: 2,
+      });
       form.resetFields();
       onSuccess();
       onClose();
     } catch (error) {
-      message.error('Failed to create category');
+      notification.error({
+        message: t('category.createError'),
+        duration: 2,
+      });
     }
   };
 
   return (
     <Modal
-      title="Create Category"
+      title={t('category.createTitle')}
       open={visible}
       onCancel={onClose}
       onOk={handleSubmit}

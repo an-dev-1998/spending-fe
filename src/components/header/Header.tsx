@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Typography, Space, Avatar, Dropdown, Tag } from 'antd';
+import { Layout, Typography, Space, Avatar, Dropdown, Tag, Image } from 'antd';
 import { MoneyCollectTwoTone, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import LanguageSwitcher from '../common/LanguageSwitch';
@@ -65,9 +65,12 @@ const HeaderComponent: React.FC = () => {
       zIndex: 1,
       backgroundImage: 'linear-gradient(45deg, pink, transparent)'
     }}>
-      <Title level={4} style={{ margin: 0 }}><MoneyCollectTwoTone /></Title>
-      <Space size="middle">
-        <NotificationPopup 
+      <Image
+        width={48}
+        src="/spending-logo.png"
+      />
+      <Space size="middle" style={{ overflow: 'hidden' }}>
+        <NotificationPopup
           notifications={notifications}
           onNotificationClick={handleNotificationClick}
           onRefresh={refetch}
@@ -78,7 +81,7 @@ const HeaderComponent: React.FC = () => {
           <Space style={{ cursor: 'pointer' }}>
             <Avatar src={image_url} icon={<UserOutlined />} />
             <span>{name}</span>
-            {role === 1 ? <Tag color="red">Admin</Tag> : <Tag color="blue">User</Tag>}
+            {role === 1 ? <Tag color="red">Admin</Tag> : <Tag color="blue">Customer</Tag>}
           </Space>
         </Dropdown>
       </Space>

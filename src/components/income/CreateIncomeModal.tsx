@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form } from 'antd';
+import { Modal, Form, notification } from 'antd';
 import { incomeService } from '../../utils/api';
 import { useTranslation } from 'react-i18next';
 import IncomeForm from './IncomeForm';
@@ -26,10 +26,17 @@ export const CreateIncomeModal: React.FC<CreateIncomeModalProps> = ({
         date: values.date.format('YYYY-MM-DD'),
       });
       form.resetFields();
+      notification.success({
+        message: t('income.createSuccess'),
+        duration: 2,
+      });
       onSuccess();
       onClose();
     } catch (error) {
-      console.error('Error creating income:', error);
+      notification.error({
+        message: t('income.createError'),
+        duration: 2,
+      });
     }
   };
 

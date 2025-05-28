@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Modal, Form, message } from 'antd';
+import { Modal, Form, notification } from 'antd';
 import { spendingService } from '../../utils/api';
 import { Spending } from '../../types/spending';
 import SpendingForm from './SpendingForm';
@@ -39,12 +39,18 @@ const EditSpendingModal: React.FC<EditSpendingModalProps> = ({
       const values = await form.validateFields();
       if (spending) {
         await spendingService.updateSpending(parseInt(spending.id), values);
-        message.success(t('spending.updateSuccess'));
+        notification.success({
+          message: t('spending.updateSuccess'),
+          duration: 2,
+        });
         onSuccess();
         onClose();
       }
     } catch (error) {
-      message.error(t('spending.updateError'));
+      notification.error({
+        message: t('spending.updateError'),
+        duration: 2,
+      });
     }
   };
 

@@ -6,6 +6,7 @@ import { authService } from '../utils/api/authService';
 import { fetchSanctumCsrfToken } from '../utils/api/sanctum';
 import { useTranslation } from 'react-i18next';
 import { useUserStore } from '../store/userStore';
+import LanguageSwitcher from '../components/common/LanguageSwitch';
 
 const { Title } = Typography;
 
@@ -25,13 +26,13 @@ const Login: React.FC = () => {
   const setEmail = useUserStore((state) => state.setEmail);
   const setUserId = useUserStore((state) => state.setUserId);
   const setImageUrl = useUserStore((state) => state.setImageUrl);
-  
+
   const onFinish = async (values: LoginFormValues) => {
     setLoading(true);
     try {
       console.log('Starting login process...');
       await fetchSanctumCsrfToken();
-      
+
       const response = await authService.login({
         email: values.email,
         password: values.password
@@ -44,7 +45,7 @@ const Login: React.FC = () => {
       }
 
       const responseData = response.data || response;
-      
+
       if (!responseData.token || !responseData.user) {
         console.error('Invalid response format:', responseData);
         throw new Error(t('login.invalidResponseFormat'));
@@ -76,20 +77,24 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      justifyContent: 'center', 
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
       alignItems: 'center',
       background: '#f0f2f5',
       backgroundImage: 'linear-gradient(45deg, pink, transparent)'
     }}>
       <Card style={{ width: 400, boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+        <div style={{ textAlign: 'right', marginBottom: 16 }}>
+          <LanguageSwitcher />
+        </div>
+
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <Title level={2}>{t('login.welcomeBack')}</Title>
           <Typography.Text type="secondary">{t('login.pleaseSignIn')}</Typography.Text>
         </div>
-        
+
         <Form
           name="login"
           initialValues={{ remember: true }}
@@ -103,9 +108,9 @@ const Login: React.FC = () => {
               { type: 'email', message: t('login.emailInvalid') }
             ]}
           >
-            <Input 
-              prefix={<UserOutlined />} 
-              placeholder={t('login.email')} 
+            <Input
+              prefix={<UserOutlined />}
+              placeholder={t('login.email')}
               size="large"
             />
           </Form.Item>
@@ -128,9 +133,9 @@ const Login: React.FC = () => {
           </div>
 
           <Form.Item>
-            <Button 
-              type="primary" 
-              htmlType="submit" 
+            <Button
+              type="primary"
+              htmlType="submit"
               loading={loading}
               block
               size="large"

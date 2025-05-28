@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import AppTable from '../components/common/AppTable';
-import { Space, Button, message, DatePicker, Tag } from 'antd';
+import { Space, Button, DatePicker, Tag, notification } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Spending, spendingService } from '../utils/api';
 import dayjs from 'dayjs';
 import { useGetSpendings } from '../hooks/use-hook-get-spendings';
+import { useGetCategories } from '../hooks/use-hook-get-categories';
 import EditSpendingModal from '../components/spending/EditSpendingModal';
 import CreateSpendingModal from '../components/spending/CreateSpendingModal';
 import DeleteItemModal from '../components/common/DeleteItemModal';
@@ -12,9 +13,13 @@ import { useTranslation } from 'react-i18next';
 import type { RangePickerProps } from 'antd/es/date-picker';
 import { CURRENCY } from '../constans';
 import { useUserStore } from '../store/userStore';
+import AppSelect from '../components/common/AppSelect';
+import '../assets/date-picker.css';
 
 const SpendingPage: React.FC = () => {
-  const { loading, spendings, pagination, handleTableChange, handleDateRangeChange } = useGetSpendings();
+  const { loading, spendings, pagination, handleTableChange, handleDateRangeChange, handleCategoryChange } = useGetSpendings();
+  const { categories } = useGetCategories();
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -34,6 +39,11 @@ const SpendingPage: React.FC = () => {
     } else {
       handleDateRangeChange(null);
     }
+  };
+
+  const onCategoryChange = (value: number | null) => {
+    setSelectedCategory(value);
+    handleCategoryChange(value);
   };
 
   const columns = [
@@ -100,7 +110,7 @@ const SpendingPage: React.FC = () => {
   };
 
   const handleSuccess = () => {
-    handleTableChange(pagination);
+    handleTableChange(pagination, {}, [], { currentDataSource: spendings });
   };
 
   const handleCloseDelete = () => {
@@ -111,11 +121,17 @@ const SpendingPage: React.FC = () => {
     if (selectedSpending) {
       try {
         await spendingService.deleteSpending(parseInt(selectedSpending.id));
-        message.success(t('spending.deleteSuccess'));
+        notification.success({
+          message: t('spending.deleteSuccess'),
+          duration: 2,
+        });
         handleSuccess();
         handleCloseDelete();
       } catch (error) {
-        message.error(t('spending.deleteFailed'));
+        notification.error({
+          message: t('spending.deleteFailed'),
+          duration: 2,
+        });
       }
     }
   };
@@ -128,8 +144,19 @@ const SpendingPage: React.FC = () => {
           {t('spending.create')}
         </Button>
       </div>
-      <div style={{ marginBottom: 16 }}>
+      <div style={{ marginBottom: 16, display: 'flex', gap: '16px' }}>
         <DatePicker.RangePicker onChange={onDateRangeChange} />
+        <AppSelect
+          options={categories.map(category => ({
+            label: category.name,
+            value: category.id
+          }))}
+          onChange={onCategoryChange}
+          value={selectedCategory}
+          placeholder={t('spending.category.name')}
+          style={{ minWidth: '200px' }}
+          allowClear
+        />
       </div>
       <AppTable<Spending>
         columns={columns}

@@ -30,7 +30,7 @@ const loadState = () => {
       name: name || null,
       email: email || null,
       userId: userId || null,
-      image_url: image_url || null,
+      image_url: image_url || '',
     };
   } catch (error) {
     return { role: null, name: null, email: null, userId: null, image_url: null };

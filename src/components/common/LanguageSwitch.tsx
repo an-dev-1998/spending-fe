@@ -8,7 +8,7 @@ const LanguageSwitcher = () => {
     return (
         <Select
             defaultValue="en"
-            style={{ width: 120 }}
+            style={{ width: 120, textAlign: 'left' }}
             options={[
                 { value: 'en', label: 'English' },
                 { value: 'vi', label: 'Tiếng Việt' },

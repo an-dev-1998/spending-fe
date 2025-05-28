@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Modal, Form, message } from 'antd';
+import { Modal, Form, notification } from 'antd';
 import { Income, incomeService } from '../../utils/api';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
@@ -38,12 +38,18 @@ export const EditIncomeModal: React.FC<EditIncomeModalProps> = ({
       const values = await form.validateFields();
       if (income) {
         await incomeService.updateIncome(parseInt(income.id), values);
-        message.success(t('income.updateSuccess'));
+        notification.success({
+          message: t('income.updateSuccess'),
+          duration: 2,
+        });
         onSuccess();
         onClose();
       }
     } catch (error) {
-      console.error('Error updating income:', error);
+      notification.error({
+        message: t('income.updateError'),
+        duration: 2,
+      });
     }
   };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, message } from 'antd';
+import { Modal, Form, notification } from 'antd';
 import { spendingService } from '../../utils/api';
 import SpendingForm from './SpendingForm';
 import { useTranslation } from 'react-i18next';
@@ -20,12 +20,18 @@ const CreateSpendingModal: React.FC<CreateSpendingModalProps> = ({
     try {
       const values = await form.validateFields();
       await spendingService.createSpending(values);
-      message.success(t('spending.createSuccess'));
+      notification.success({
+        message: t('spending.createSuccess'),
+        duration: 2,
+      });
       form.resetFields();
       onSuccess();
       onClose();
     } catch (error) {
-      message.error(t('spending.createError'));
+      notification.error({
+        message: t('spending.createError'),
+        duration: 2,
+      });
     }
   };
 

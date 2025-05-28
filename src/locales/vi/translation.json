@@ -188,6 +188,16 @@
       "notificationsEmpty": "Không có thông báo",
       "notificationsError": "Lỗi khi lấy thông báo",
       "markAllAsRead": "Đọc tất cả"
+    },
+    "footer": {
+      "quickLinks": "Liên kết nhanh",
+      "connect": "Kết nối",
+      "madeWithLove": "Làm với © {{year}} An Dev",
+      "spendingTracker": "Theo dõi chi tiêu",
+      "trackYourExpensesAndIncome": "Theo dõi chi tiêu và thu nhập dễ dàng",
+      "income": "Thu nhập",
+      "spending": "Chi tiêu",
+      "setting": "Cài đặt"
     }
   }
   

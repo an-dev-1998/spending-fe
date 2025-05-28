@@ -188,5 +188,15 @@
         "notificationsEmpty": "No notifications found",
         "notificationsError": "Failed to fetch notifications",
         "markAllAsRead": "Read All"
+    },
+    "footer": {
+        "quickLinks": "Quick Links",
+        "connect": "Connect",
+        "madeWithLove": "Made with © {{year}} An Dev",
+        "spendingTracker": "Spending Tracker",
+        "trackYourExpensesAndIncome": "Track your expenses and income with ease",
+        "income": "Income",
+        "spending": "Spending",
+        "setting": "Setting"
     }
 }

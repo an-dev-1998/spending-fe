@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppTable from '../components/common/AppTable';
-import { Space, Button, message } from 'antd';
+import { Space, Button, notification } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Category, categoryService } from '../utils/api';
 import { useGetCategories } from '../hooks/use-hook-get-categories';
@@ -85,11 +85,17 @@ const CategoryPage: React.FC = () => {
     if (selectedCategory) {
       try {
         await categoryService.deleteCategory(selectedCategory.id);
-        message.success(t('category.deleteSuccess'));
+        notification.success({
+          message: t('category.deleteSuccess'),
+          duration: 2,
+        });
         handleSuccess();
         handleCloseDelete();
       } catch (error) {
-        message.error(t('category.deleteFailed'));
+        notification.error({
+          message: t('category.deleteFailed'),
+          duration: 2,
+        });
       }
     }
   };

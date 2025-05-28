@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Modal, Form, message } from 'antd';
+import { Modal, Form, notification } from 'antd';
 import { Category, categoryService } from '../../utils/api';
 import CategoryForm from './CategoryForm';
-
+import { useTranslation } from 'react-i18next';
 interface EditCategoryModalProps {
   category: Category | null;
   visible: boolean;
@@ -17,6 +17,7 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
   onSuccess,
 }) => {
   const [form] = Form.useForm();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (category && visible) {
@@ -32,18 +33,24 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
       const values = await form.validateFields();
       if (category) {
         await categoryService.updateCategory(category.id, values);
-        message.success('Category updated successfully');
+        notification.success({
+          message: t('category.updateSuccess'),
+          duration: 2,
+        });
         onSuccess();
         onClose();
       }
     } catch (error) {
-      message.error('Failed to update category');
+      notification.error({
+        message: t('category.updateError'),
+        duration: 2,
+      });
     }
   };
 
   return (
     <Modal
-      title="Edit Category"
+      title={t('category.editTitle')}
       open={visible}
       onCancel={onClose}
       onOk={handleSubmit}

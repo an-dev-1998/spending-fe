@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AppTable from '../components/common/AppTable';
-import { Space, Button, message, DatePicker, Tag } from 'antd';
+import { Space, Button, DatePicker, Tag, notification } from 'antd';
 import { EditOutlined, DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { Income, incomeService } from '../utils/api';
 import dayjs from 'dayjs';
@@ -106,11 +106,17 @@ const IncomePage: React.FC = () => {
     if (selectedIncome) {
       try {
         await incomeService.deleteIncome(parseInt(selectedIncome.id));
-        message.success(t('income.deleteSuccess'));
+        notification.success({
+          message: t('income.deleteSuccess'),
+          duration: 2,
+        });
         handleSuccess();
         handleCloseDelete();
       } catch (error) {
-        message.error(t('income.deleteFailed'));
+        notification.error({
+          message: t('income.deleteFailed'),
+          duration: 2,
+        });
       }
     }
   };
