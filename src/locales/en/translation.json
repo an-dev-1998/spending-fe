@@ -4,7 +4,15 @@
         "totalIncome": "Total Income",
         "totalSpending": "Total Spending",
         "totalBalance": "Total Balance",
-        "totalPerDay": "Total Spending / Day"
+        "totalPerDay": "Total Spending / Day",
+        "chooseDate": "Choose Date",
+        "beforeDate": "Before Date",
+        "difference": "Difference",
+        "differencePercentage": "Difference Percentage",
+        "differenceAmount": "Difference Amount",
+        "status": "Status",
+        "save": "Save",
+        "overuse": "Overuse"
     },
     "analytics": {
         "title": "Analytics",

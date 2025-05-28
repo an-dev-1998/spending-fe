@@ -27,6 +27,25 @@ export interface IncomeAnalyticsParams {
   userId?: number;
 }
 
+export interface SpendingByDateParams {
+  date: string;
+}
+
+export interface SpendingByDateResponse {
+  today: {
+    date: string;
+    amount: number;
+  };
+  yesterday: {
+    date: string;
+    amount: number;
+  };
+  difference: {
+    amount: number;
+    percentage: number;
+  };
+}
+
 export const analyticService = {
   getSpendingAnalytics: async (params?: SpendingAnalyticsParams): Promise<AnalyticsData[]> => {
     const queryParams = new URLSearchParams();
@@ -63,5 +82,17 @@ export const analyticService = {
     const url = `/analytics/income${queryString ? `?${queryString}` : ''}`;
 
     return apiService.get<AnalyticsData[]>(url);
+  },
+  getSpendingByDate: async (params?: SpendingByDateParams): Promise<SpendingByDateResponse> => {
+    const queryParams = new URLSearchParams();
+
+    if (params?.date) {
+      queryParams.append('date', params.date);
+    }
+
+    const queryString = queryParams.toString();
+    const url = `/analytics/spending-by-date${queryString ? `?${queryString}` : ''}`;
+
+    return apiService.get<SpendingByDateResponse>(url);
   }
 }; 

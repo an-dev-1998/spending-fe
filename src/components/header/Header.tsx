@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Typography, Space, Avatar, Dropdown, Tag, Image } from 'antd';
-import { MoneyCollectTwoTone, UserOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import LanguageSwitcher from '../common/LanguageSwitch';
 import { useUserStore } from '../../store/userStore';
@@ -8,7 +8,6 @@ import NotificationPopup from '../notifications/NotificationPopup';
 import { useGetNotifications, Notification } from '../../hooks/use-hook-get-notifications';
 
 const { Header } = Layout;
-const { Title } = Typography;
 
 const userMenuItems: MenuProps['items'] = [
   {
@@ -32,7 +31,6 @@ const HeaderComponent: React.FC = () => {
   const name = useUserStore((state) => state.name);
   const role = useUserStore((state) => state.role);
   const image_url = useUserStore((state) => state.image_url);
-  console.log(image_url);
   const { notifications, markAsRead, refetch, markAllAsRead } = useGetNotifications();
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {

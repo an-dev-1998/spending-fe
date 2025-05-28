@@ -4,7 +4,15 @@
       "totalIncome": "Tổng thu nhập",
       "totalSpending": "Tổng chi tiêu",
       "totalBalance": "Tổng số dư",
-      "totalPerDay": "Tổng chi tiêu tối đa / ngày"
+      "totalPerDay": "Tổng chi tiêu tối đa / ngày",
+      "chooseDate": "Chọn ngày",
+      "beforeDate": "Ngày trước",
+      "difference": "Sự chênh lệch",
+      "differenceAmount": "Số tiền chênh lệch",
+      "differencePercentage": "Phần trăm chênh lệch",
+      "status": "Trạng thái",
+      "save": "Tiết kiệm",
+      "overuse": "Vượt quá"
     },
     "analytics": {
       "title": "Phân tích",

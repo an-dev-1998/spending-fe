@@ -1,0 +1,15 @@
+.card-custom .ant-card-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+  }
+@media (max-width: 768px) {
+    .card-custom .ant-card-body {
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 10px;
+    }
+}
