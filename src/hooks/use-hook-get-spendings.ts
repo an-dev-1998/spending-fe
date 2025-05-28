@@ -83,9 +83,9 @@ export const useGetSpendings = (): UseGetSpendingsReturn => {
 
   const handleTableChange = (
     newPagination: TablePaginationConfig,
-    filters: Record<string, FilterValue | null>,
-    sorter: SorterResult<Spending> | SorterResult<Spending>[],
-    extra: { currentDataSource: Spending[] }
+    // filters: Record<string, FilterValue | null>,
+    // sorter: SorterResult<Spending> | SorterResult<Spending>[],
+    // extra: { currentDataSource: Spending[] }
   ) => {
     fetchSpendings(newPagination.current || 1, newPagination.pageSize || 10);
   };

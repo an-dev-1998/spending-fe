@@ -2,7 +2,6 @@ import React from 'react';
 import { Layout, Row, Col, Typography, Space } from 'antd';
 import {
   GithubOutlined,
-  HeartOutlined,
   FacebookOutlined,
 } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';

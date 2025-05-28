@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Typography, Space, Avatar, Dropdown, Tag, Image } from 'antd';
+import { Layout, Space, Avatar, Dropdown, Tag, Image } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import LanguageSwitcher from '../common/LanguageSwitch';
