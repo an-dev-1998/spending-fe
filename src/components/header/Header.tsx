@@ -51,21 +51,26 @@ const HeaderComponent: React.FC = () => {
   };
 
   return (
-    <Header style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      background: '#fff',
-      padding: '0 24px',
-      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
-      position: 'sticky',
-      top: 0,
-      zIndex: 1,
-      backgroundImage: 'linear-gradient(45deg, pink, transparent)'
-    }}>
+    <Header
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        background: '#fff',
+        padding: '0 24px',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1,
+        backgroundImage: 'linear-gradient(45deg, pink, transparent)',
+      }}
+    >
       <Image
         width={48}
         src="/spending-logo.png"
+        onClick={() => (window.location.href = '/')}
+        preview={false}
+        style={{ cursor: 'pointer' }}
       />
       <Space size="middle" style={{ overflow: 'hidden' }}>
         <NotificationPopup
@@ -87,4 +92,4 @@ const HeaderComponent: React.FC = () => {
   );
 };
 
-export default HeaderComponent; 
+export default HeaderComponent;

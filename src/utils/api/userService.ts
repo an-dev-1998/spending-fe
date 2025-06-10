@@ -14,7 +14,9 @@ export interface User {
 
 class UserService {
   async getUsers(page = 1, pageSize = 10): Promise<PaginatedResponse<User>> {
-    return await apiService.get<PaginatedResponse<User>>(`/users/?page=${page}&pageSize=${pageSize}`);
+    return await apiService.get<PaginatedResponse<User>>(
+      `/users/?page=${page}&pageSize=${pageSize}`
+    );
   }
 
   async getUserById(id: string): Promise<User> {
@@ -38,4 +40,4 @@ class UserService {
   }
 }
 
-export const userService = new UserService(); 
+export const userService = new UserService();

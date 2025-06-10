@@ -22,7 +22,10 @@ const AppSelect: React.FC<AppSelectProps> = ({
   onChange,
   ...rest
 }) => {
-  const handleChange = (newValue: string | number, option?: AppSelectOption | AppSelectOption[]) => {
+  const handleChange = (
+    newValue: string | number,
+    option?: AppSelectOption | AppSelectOption[]
+  ) => {
     if (onChange) {
       onChange(newValue, option);
     }

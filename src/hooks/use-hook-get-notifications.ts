@@ -37,12 +37,12 @@ export const useGetNotifications = () => {
     try {
       const response = await apiService.get<Notification[]>('/notifications');
       const readStatus = getReadStatusFromStorage();
-      
-      const notificationsWithReadStatus = response.map(notification => ({
+
+      const notificationsWithReadStatus = response.map((notification) => ({
         ...notification,
-        read: readStatus[notification.id] || notification.read
+        read: readStatus[notification.id] || notification.read,
       }));
-      
+
       setNotifications(notificationsWithReadStatus);
       setError(null);
     } catch (error) {
@@ -57,12 +57,10 @@ export const useGetNotifications = () => {
   const markAsRead = async (notificationId: number) => {
     try {
       await apiService.post(`/notifications/${notificationId}/mark-as-read`);
-      
-      setNotifications(prev => 
-        prev.map(notification => 
-          notification.id === notificationId 
-            ? { ...notification, read: true }
-            : notification
+
+      setNotifications((prev) =>
+        prev.map((notification) =>
+          notification.id === notificationId ? { ...notification, read: true } : notification
         )
       );
 
@@ -78,7 +76,7 @@ export const useGetNotifications = () => {
   const markAllAsRead = async () => {
     try {
       await apiService.post('/notifications/mark-all-as-read');
-      setNotifications(prev => prev.map(notification => ({ ...notification, read: true })));
+      setNotifications((prev) => prev.map((notification) => ({ ...notification, read: true })));
     } catch (error) {
       message.error('Failed to mark all notifications as read');
       console.error('Error marking all notifications as read:', error);
@@ -97,4 +95,4 @@ export const useGetNotifications = () => {
     markAsRead,
     markAllAsRead,
   };
-}; 
+};

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { message } from 'antd';
+import { App } from 'antd';
 import { categoryService, Category } from '../utils/api';
 import type { TablePaginationConfig } from 'antd/es/table';
 
@@ -17,12 +17,13 @@ export const useGetCategories = () => {
     pageSize: 10,
     total: 0,
   });
+  const { message } = App.useApp();
 
   const fetchCategories = async (page = 1, pageSize = 10) => {
     setLoading(true);
     try {
       const response = await categoryService.getCategories(page, pageSize);
-      
+
       if (Array.isArray(response)) {
         setCategories(response);
         setPagination({
@@ -63,4 +64,4 @@ export const useGetCategories = () => {
     pagination,
     handleTableChange,
   };
-}; 
+};

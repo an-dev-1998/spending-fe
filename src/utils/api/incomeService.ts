@@ -30,7 +30,7 @@ class IncomeService {
 
   async getIncomes(filters?: IncomeFilters): Promise<Income[] | PaginatedResponse<Income>> {
     const queryParams = new URLSearchParams();
-    
+
     if (filters?.page) {
       queryParams.append('page', filters.page.toString());
     }
@@ -46,7 +46,7 @@ class IncomeService {
 
     const queryString = queryParams.toString();
     const url = `${this.baseUrl}${queryString ? `?${queryString}` : ''}`;
-    
+
     const response = await apiService.get<Income[] | PaginatedResponse<Income>>(url);
     return response;
   }
@@ -68,4 +68,4 @@ class IncomeService {
   }
 }
 
-export const incomeService = new IncomeService(); 
+export const incomeService = new IncomeService();

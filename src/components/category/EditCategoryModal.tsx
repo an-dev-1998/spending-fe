@@ -61,4 +61,4 @@ const EditCategoryModal: React.FC<EditCategoryModalProps> = ({
   );
 };
 
-export default EditCategoryModal; 
+export default EditCategoryModal;

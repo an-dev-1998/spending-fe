@@ -9,7 +9,8 @@ import {
   CaretLeftOutlined,
   MoneyCollectOutlined,
   UnorderedListOutlined,
-  DollarOutlined
+  DollarOutlined,
+  BoxPlotOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -46,17 +47,22 @@ const Sidebar: React.FC = () => {
     {
       key: 'spending',
       label: t('spending.title'),
-      icon: <MoneyCollectOutlined />
+      icon: <MoneyCollectOutlined />,
     },
     {
       key: 'income',
       label: t('income.title'),
-      icon: <DollarOutlined />
+      icon: <DollarOutlined />,
     },
     {
       key: 'category',
       label: t('category.title'),
       icon: <UnorderedListOutlined />,
+    },
+    {
+      key: 'expect',
+      label: t('expect.title'),
+      icon: <BoxPlotOutlined />,
     },
     {
       type: 'divider',
@@ -66,30 +72,32 @@ const Sidebar: React.FC = () => {
       label: t('settings.title'),
       icon: <SettingOutlined />,
     },
-    ...(role === 1 ? [
-      {
-        key: 'analytics',
-        label: t('analytics.title'),
-        icon: <BarChartOutlined />,
-        children: [
+    ...(role === 1
+      ? [
           {
-            key: 'analytics-spending',
-            label: t('analytics.spending'),
-            icon: <MoneyCollectOutlined />,
+            key: 'analytics',
+            label: t('analytics.title'),
+            icon: <BarChartOutlined />,
+            children: [
+              {
+                key: 'analytics-spending',
+                label: t('analytics.spending'),
+                icon: <MoneyCollectOutlined />,
+              },
+              {
+                key: 'analytics-income',
+                label: t('analytics.income'),
+                icon: <DollarOutlined />,
+              },
+            ],
           },
           {
-            key: 'analytics-income',
-            label: t('analytics.income'),
-            icon: <DollarOutlined />,
+            key: 'user',
+            label: t('user.title'),
+            icon: <UserOutlined />,
           },
-        ],
-      },
-      {
-        key: 'user',
-        label: t('user.title'),
-        icon: <UserOutlined />,
-      }
-    ] : []),
+        ]
+      : []),
   ];
 
   const onClick: MenuProps['onClick'] = (e) => {
@@ -103,7 +111,15 @@ const Sidebar: React.FC = () => {
       onCollapse={(value) => setCollapsed(value)}
       theme="light"
       trigger={
-        collapsed ? <Button shape="circle"><CaretRightOutlined /></Button> : <Button shape="circle"><CaretLeftOutlined /></Button>
+        collapsed ? (
+          <Button shape="circle">
+            <CaretRightOutlined />
+          </Button>
+        ) : (
+          <Button shape="circle">
+            <CaretLeftOutlined />
+          </Button>
+        )
       }
     >
       <Menu

@@ -41,15 +41,10 @@ export const CreateIncomeModal: React.FC<CreateIncomeModalProps> = ({
   };
 
   return (
-    <Modal
-      title={t('income.createTitle')}
-      open={visible}
-      onCancel={onClose}
-      onOk={handleSubmit}
-    >
+    <Modal title={t('income.createTitle')} open={visible} onCancel={onClose} onOk={handleSubmit}>
       <IncomeForm form={form} />
     </Modal>
   );
 };
 
-export default CreateIncomeModal; 
+export default CreateIncomeModal;

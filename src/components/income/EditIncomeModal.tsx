@@ -66,4 +66,4 @@ export const EditIncomeModal: React.FC<EditIncomeModalProps> = ({
   );
 };
 
-export default EditIncomeModal; 
+export default EditIncomeModal;

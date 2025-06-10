@@ -30,4 +30,4 @@ export const spendingService = {
     const { data } = await api.get('/spendings/stats', { params: filters });
     return data;
   },
-}; 
+};

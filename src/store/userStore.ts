@@ -79,4 +79,4 @@ export const useUserStore = create<UserState>((set) => ({
     localStorage.removeItem('image_url');
     set({ image_url: null });
   },
-})); 
+}));

@@ -35,7 +35,7 @@ const Login: React.FC = () => {
 
       const response = await authService.login({
         email: values.email,
-        password: values.password
+        password: values.password,
       });
       console.log('Login response:', response);
 
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
         message: error.message,
         response: error.response?.data,
         status: error.response?.status,
-        headers: error.response?.headers
+        headers: error.response?.headers,
       });
       const errorMessage = error.response?.data?.message || error.message || t('login.failed');
       message.error(errorMessage);
@@ -77,14 +77,16 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      background: '#f0f2f5',
-      backgroundImage: 'linear-gradient(45deg, pink, transparent)'
-    }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: '#f0f2f5',
+        backgroundImage: 'linear-gradient(45deg, pink, transparent)',
+      }}
+    >
       <Card style={{ width: 400, boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
         <div style={{ textAlign: 'right', marginBottom: 16 }}>
           <LanguageSwitcher />
@@ -95,24 +97,15 @@ const Login: React.FC = () => {
           <Typography.Text type="secondary">{t('login.pleaseSignIn')}</Typography.Text>
         </div>
 
-        <Form
-          name="login"
-          initialValues={{ remember: true }}
-          onFinish={onFinish}
-          layout="vertical"
-        >
+        <Form name="login" initialValues={{ remember: true }} onFinish={onFinish} layout="vertical">
           <Form.Item
             name="email"
             rules={[
               { required: true, message: t('login.emailRequired') },
-              { type: 'email', message: t('login.emailInvalid') }
+              { type: 'email', message: t('login.emailInvalid') },
             ]}
           >
-            <Input
-              prefix={<UserOutlined />}
-              placeholder={t('login.email')}
-              size="large"
-            />
+            <Input prefix={<UserOutlined />} placeholder={t('login.email')} size="large" />
           </Form.Item>
 
           <Form.Item
@@ -128,18 +121,13 @@ const Login: React.FC = () => {
 
           <div style={{ textAlign: 'center', marginBottom: 16 }}>
             <Typography.Text type="secondary">
-              {t('login.dontHaveAccount')} <Typography.Link href="/register">{t('login.registerHere')}</Typography.Link>
+              {t('login.dontHaveAccount')}{' '}
+              <Typography.Link href="/register">{t('login.registerHere')}</Typography.Link>
             </Typography.Text>
           </div>
 
           <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              loading={loading}
-              block
-              size="large"
-            >
+            <Button type="primary" htmlType="submit" loading={loading} block size="large">
               {t('login.signIn')}
             </Button>
           </Form.Item>

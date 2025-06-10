@@ -14,7 +14,8 @@ import { CURRENCY } from '../constans';
 import { useUserStore } from '../store/userStore';
 
 const IncomePage: React.FC = () => {
-  const { loading, incomes, pagination, handleTableChange, handleDateRangeChange } = useGetIncomes();
+  const { loading, incomes, pagination, handleTableChange, handleDateRangeChange } =
+    useGetIncomes();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -30,42 +31,52 @@ const IncomePage: React.FC = () => {
 
   const baseColumns = [
     {
-      title: t("income.description"),
+      title: t('income.description'),
       dataIndex: 'description',
       key: 'description',
     },
     {
-      title: t("income.amount"),
+      title: t('income.amount'),
       dataIndex: 'amount',
       key: 'amount',
       render: (amount: string) => {
         const formattedAmount = parseFloat(amount).toLocaleString('en-US', {
           minimumFractionDigits: 0,
-          maximumFractionDigits: 0
+          maximumFractionDigits: 0,
         });
-        return <><Tag style={{ borderRadius: 32 }} color="gray">{formattedAmount} {CURRENCY}</Tag></>;
-      }
+        return (
+          <>
+            <Tag style={{ borderRadius: 32 }} color="gray">
+              {formattedAmount} {CURRENCY}
+            </Tag>
+          </>
+        );
+      },
     },
     {
-      title: t("income.date"),
+      title: t('income.date'),
       dataIndex: 'date',
       key: 'date',
       render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
     },
     {
-      title: t("income.category.name"),
+      title: t('income.category.name'),
       dataIndex: ['category', 'name'],
       key: 'category.name',
     },
   ];
 
   const actionColumn = {
-    title: t("income.action"),
+    title: t('income.action'),
     key: 'action',
     render: (_: any, record: Income) => (
       <Space size="middle">
-        <a onClick={() => handleEdit(record)}><EditOutlined /></a>
-        <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
+        <a onClick={() => handleEdit(record)}>
+          <EditOutlined />
+        </a>
+        <a onClick={() => handleDelete(record)}>
+          <DeleteOutlined />
+        </a>
       </Space>
     ),
   };

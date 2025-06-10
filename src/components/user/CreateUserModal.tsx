@@ -12,7 +12,7 @@ interface CreateUserModalProps {
 const CreateUserModal: React.FC<CreateUserModalProps> = ({ visible, onClose, onSuccess }) => {
   const [form] = Form.useForm();
   const { t } = useTranslation();
-  
+
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
@@ -39,4 +39,4 @@ const CreateUserModal: React.FC<CreateUserModalProps> = ({ visible, onClose, onS
   );
 };
 
-export default CreateUserModal; 
+export default CreateUserModal;

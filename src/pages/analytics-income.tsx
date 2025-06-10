@@ -40,26 +40,27 @@ const DemoPie = memo<DemoPieProps>(
   },
   (prev, next) => {
     return isEqual(prev.data, next.data);
-  },
+  }
 );
 
 const Analytics: React.FC = () => {
   const { t } = useTranslation();
   const [selectedUser, setSelectedUser] = useState<number | null>(null);
   const [dateRange, setDateRange] = useState<[dayjs.Dayjs, dayjs.Dayjs] | null>(null);
-  
+
   const { loading, data, error, refetch } = useGetIncomeAnalytics({
     startDate: dateRange?.[0],
     endDate: dateRange?.[1],
     userId: selectedUser || undefined,
   });
-  
+
   const { users } = useGetUsers();
 
-  const mappedData = data?.map(item => ({
-    type: item.category.name,
-    value: parseFloat(item.total_amount)
-  })) || [];
+  const mappedData =
+    data?.map((item) => ({
+      type: item.category.name,
+      value: parseFloat(item.total_amount),
+    })) || [];
 
   const analyticUsers = users.map((user) => ({
     value: user.id,
@@ -80,7 +81,7 @@ const Analytics: React.FC = () => {
     setSelectedUser(value);
     refetch();
   };
-  
+
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>

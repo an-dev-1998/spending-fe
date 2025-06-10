@@ -21,7 +21,7 @@ export const useGetUsers = () => {
     setLoading(true);
     try {
       const response = await userService.getUsers(page, pageSize);
-      
+
       if (Array.isArray(response)) {
         setUsers(response);
         setPagination({
@@ -62,4 +62,4 @@ export const useGetUsers = () => {
     pagination,
     handleTableChange,
   };
-}; 
+};

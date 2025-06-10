@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { message } from 'antd';
+import { App } from 'antd';
 import { TablePaginationConfig } from 'antd/es/table';
 import { Spending, spendingService } from '../utils/api';
 import dayjs from 'dayjs';
@@ -36,13 +36,15 @@ export const useGetSpendings = (): UseGetSpendingsReturn => {
     total: 0,
   });
 
+  const { message } = App.useApp();
+
   const fetchSpendings = async (page = 1, pageSize = 10) => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
       params.append('page', page.toString());
       params.append('pageSize', pageSize.toString());
-      
+
       if (dateRange?.[0]) {
         params.append('start_date', dateRange[0].format('YYYY-MM-DD'));
       }
@@ -54,7 +56,7 @@ export const useGetSpendings = (): UseGetSpendingsReturn => {
       }
 
       const response = await spendingService.getSpendings(page, pageSize, params.toString());
-      
+
       if (Array.isArray(response)) {
         setSpendings(response);
         setPagination({
@@ -82,7 +84,7 @@ export const useGetSpendings = (): UseGetSpendingsReturn => {
   };
 
   const handleTableChange = (
-    newPagination: TablePaginationConfig,
+    newPagination: TablePaginationConfig
     // filters: Record<string, FilterValue | null>,
     // sorter: SorterResult<Spending> | SorterResult<Spending>[],
     // extra: { currentDataSource: Spending[] }
@@ -110,4 +112,4 @@ export const useGetSpendings = (): UseGetSpendingsReturn => {
     handleDateRangeChange,
     handleCategoryChange,
   };
-}; 
+};

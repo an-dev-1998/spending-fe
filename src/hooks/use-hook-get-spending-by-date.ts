@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { message } from 'antd';
-import { analyticService, SpendingByDateParams, SpendingByDateResponse } from '../utils/api/analyticService';
+import {
+  analyticService,
+  SpendingByDateParams,
+  SpendingByDateResponse,
+} from '../utils/api/analyticService';
 
 export const useGetSpendingByDate = (params?: SpendingByDateParams) => {
   const [loading, setLoading] = useState(false);
@@ -28,4 +32,4 @@ export const useGetSpendingByDate = (params?: SpendingByDateParams) => {
     data,
     refetch: fetchAnalytics,
   };
-}; 
+};

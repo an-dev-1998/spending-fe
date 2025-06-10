@@ -95,4 +95,4 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ form, initialValues }) => {
   );
 };
 
-export default IncomeForm; 
+export default IncomeForm;

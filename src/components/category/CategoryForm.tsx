@@ -16,11 +16,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ form, initialValues }) => {
   }, [initialValues, form]);
 
   return (
-    <Form
-      form={form}
-      layout="vertical"
-      initialValues={initialValues}
-    >
+    <Form form={form} layout="vertical" initialValues={initialValues}>
       <Form.Item
         name="name"
         label={t('category.name')}
@@ -28,14 +24,11 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ form, initialValues }) => {
       >
         <Input />
       </Form.Item>
-      <Form.Item
-        name="description"
-        label={t('category.description')}
-      >
+      <Form.Item name="description" label={t('category.description')}>
         <Input.TextArea rows={4} />
       </Form.Item>
     </Form>
   );
 };
 
-export default CategoryForm; 
+export default CategoryForm;

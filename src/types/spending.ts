@@ -31,4 +31,4 @@ export interface SpendingFilters {
   category?: string;
   minAmount?: number;
   maxAmount?: number;
-} 
+}

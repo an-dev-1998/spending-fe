@@ -6,13 +6,14 @@ import axios from 'axios';
  */
 export const fetchSanctumCsrfToken = async (): Promise<void> => {
   try {
-    const baseURL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || 'http://127.0.0.1:8000';
+    const baseURL =
+      import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || 'http://127.0.0.1:8000';
     await axios.get(`${baseURL}/sanctum/csrf-cookie`, {
       withCredentials: true,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'Accept': 'application/json',
-      }
+        Accept: 'application/json',
+      },
     });
   } catch (error) {
     console.error('Failed to fetch CSRF token:', error);
@@ -30,4 +31,4 @@ export const initializeAuth = async (): Promise<void> => {
   } catch (error) {
     console.error('Failed to initialize authentication:', error);
   }
-}; 
+};

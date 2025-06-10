@@ -48,4 +48,4 @@ const CreateSpendingModal: React.FC<CreateSpendingModalProps> = ({
   );
 };
 
-export default CreateSpendingModal; 
+export default CreateSpendingModal;

@@ -27,7 +27,11 @@ export interface SpendingData {
 class SpendingService {
   private readonly baseUrl = '/spendings';
 
-  async getSpendings(page = 1, pageSize = 10, queryParams?: string): Promise<Spending[] | PaginatedResponse<Spending>> {
+  async getSpendings(
+    page = 1,
+    pageSize = 10,
+    queryParams?: string
+  ): Promise<Spending[] | PaginatedResponse<Spending>> {
     const url = `${this.baseUrl}${queryParams ? `?${queryParams}` : `?page=${page}&pageSize=${pageSize}`}`;
     const response = await apiService.get<Spending[] | PaginatedResponse<Spending>>(url);
     return response;
@@ -50,4 +54,4 @@ class SpendingService {
   }
 }
 
-export const spendingService = new SpendingService(); 
+export const spendingService = new SpendingService();

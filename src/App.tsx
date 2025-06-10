@@ -10,24 +10,22 @@ import './i18n';
 const pages = import.meta.glob('./pages/*.tsx');
 
 const LoadingFallback = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    height: '100vh' 
-  }}>
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '100vh',
+    }}
+  >
     <Spin tip="Loading...">
-  <div style={{ minHeight: 100 }}>
-  </div>
-</Spin>
+      <div style={{ minHeight: 100 }}></div>
+    </Spin>
   </div>
 );
 
 const routeElements = Object.entries(pages).map(([path, lazyImport]) => {
-  const routePath = path
-    .replace('./pages/', '/')           
-    .replace('.tsx', '')                
-    .toLowerCase();
+  const routePath = path.replace('./pages/', '/').replace('.tsx', '').toLowerCase();
 
   const Component = lazy(lazyImport as () => Promise<{ default: React.ComponentType }>);
 

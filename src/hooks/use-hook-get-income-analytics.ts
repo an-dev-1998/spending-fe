@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { message } from 'antd';
-import { analyticService, AnalyticsData, IncomeAnalyticsParams } from '../utils/api/analyticService';
+import {
+  analyticService,
+  AnalyticsData,
+  IncomeAnalyticsParams,
+} from '../utils/api/analyticService';
 
 export const useGetIncomeAnalytics = (params?: IncomeAnalyticsParams) => {
   const [loading, setLoading] = useState(false);
@@ -32,4 +36,4 @@ export const useGetIncomeAnalytics = (params?: IncomeAnalyticsParams) => {
     error,
     refetch: fetchAnalytics,
   };
-}; 
+};

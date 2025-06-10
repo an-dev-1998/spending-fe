@@ -21,7 +21,7 @@ const EditSpendingModal: React.FC<EditSpendingModalProps> = ({
 }) => {
   const [form] = Form.useForm();
   const { t } = useTranslation();
-  
+
   useEffect(() => {
     if (spending && visible) {
       const date = spending.date ? dayjs(spending.date) : undefined;
@@ -67,4 +67,4 @@ const EditSpendingModal: React.FC<EditSpendingModalProps> = ({
   );
 };
 
-export default EditSpendingModal; 
+export default EditSpendingModal;

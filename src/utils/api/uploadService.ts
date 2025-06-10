@@ -13,7 +13,7 @@ class UploadService {
     console.log('UploadService: Starting file upload...');
     const formData = new FormData();
     formData.append('file', file);
-    
+
     try {
       console.log('UploadService: Making API request to', this.baseUrl);
       const response = await apiService.post<UploadResponse>(this.baseUrl, formData, {
@@ -28,7 +28,7 @@ class UploadService {
         message: error.message,
         response: error.response?.data,
         status: error.response?.status,
-        headers: error.response?.headers
+        headers: error.response?.headers,
       });
       throw error;
     }
@@ -48,4 +48,4 @@ class UploadService {
   }
 }
 
-export const uploadService = new UploadService(); 
+export const uploadService = new UploadService();

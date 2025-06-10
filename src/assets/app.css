@@ -4,6 +4,32 @@ body {
   padding: 0;
 }
 
-.custom-space .ant-space-item{
+.custom-space .ant-space-item {
   width: 23.7%;
+}
+.expect-custom {
+  flex-direction: column;
+}
+
+.expect-custom .ant-space-item {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .expect-custom {
+    flex-direction: row;
+  }
+
+  .expect-custom .ant-space-item:nth-child(1) {
+    width: 25%;
+  }
+  .expect-custom .ant-space-item:nth-child(2) {
+    width: 50%;
+  }
+  .expect-custom .ant-space-item:nth-child(3) {
+    width: 20%;
+  }
+  .expect-custom .ant-space-item:nth-child(4) {
+    width: 100px;
+  }
 }

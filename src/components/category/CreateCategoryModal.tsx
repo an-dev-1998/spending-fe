@@ -49,4 +49,4 @@ const CreateCategoryModal: React.FC<CreateCategoryModalProps> = ({
   );
 };
 
-export default CreateCategoryModal; 
+export default CreateCategoryModal;

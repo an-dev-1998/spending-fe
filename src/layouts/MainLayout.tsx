@@ -4,7 +4,6 @@ import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import Sidebar from '../components/sidebar/Sidebar';
 
-
 const { Content } = Layout;
 
 interface MainLayoutProps {
@@ -18,9 +17,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <Layout>
         <Sidebar />
         <Layout style={{ padding: '24px' }}>
-          <Content>
-            {children}
-          </Content>
+          <Content>{children}</Content>
         </Layout>
       </Layout>
       <Footer />
@@ -28,4 +25,4 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   );
 };
 
-export default MainLayout; 
+export default MainLayout;

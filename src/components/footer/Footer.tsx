@@ -1,9 +1,6 @@
 import React from 'react';
 import { Layout, Row, Col, Typography, Space } from 'antd';
-import {
-  GithubOutlined,
-  FacebookOutlined,
-} from '@ant-design/icons';
+import { GithubOutlined, FacebookOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 const { Footer } = Layout;
 const { Text, Link } = Typography;
@@ -13,11 +10,13 @@ const FooterComponent: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Footer style={{ 
-      background: '#fff',
-      padding: '24px 50px',
-      borderTop: '1px solid #f0f0f0',
-    }}>
+    <Footer
+      style={{
+        background: '#fff',
+        padding: '24px 50px',
+        borderTop: '1px solid #f0f0f0',
+      }}
+    >
       <Row gutter={[32, 24]} justify="space-between" align="middle">
         <Col xs={24} sm={12} md={8}>
           <Space direction="vertical" size="small">
@@ -54,7 +53,10 @@ const FooterComponent: React.FC = () => {
         </Col>
       </Row>
 
-      <Row justify="center" style={{ marginTop: '24px', justifyContent: 'end', textDecoration: 'underline' }}>
+      <Row
+        justify="center"
+        style={{ marginTop: '24px', justifyContent: 'end', textDecoration: 'underline' }}
+      >
         <Col>
           <Text type="secondary" style={{ fontSize: '12px' }}>
             {t('footer.madeWithLove', { year: currentYear })}
@@ -65,4 +67,4 @@ const FooterComponent: React.FC = () => {
   );
 };
 
-export default FooterComponent; 
+export default FooterComponent;

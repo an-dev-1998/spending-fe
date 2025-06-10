@@ -30,55 +30,42 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center',
-      background: '#f0f2f5',
-      backgroundImage: 'linear-gradient(45deg, pink, transparent)'
-    }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: '#f0f2f5',
+        backgroundImage: 'linear-gradient(45deg, pink, transparent)',
+      }}
+    >
       <Card style={{ width: 400, boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <Title level={2}>{t('register.title')}</Title>
           <Typography.Text type="secondary">{t('register.description')}</Typography.Text>
         </div>
-        
-        <Form
-          name="register"
-          onFinish={onFinish}
-          layout="vertical"
-        >
-          <Form.Item
-            name="name"
-            rules={[{ required: true, message: t('register.nameRequired') }]}
-          >
-            <Input 
-              prefix={<UserOutlined />} 
-              placeholder={t('register.name')} 
-              size="large"
-            />
+
+        <Form name="register" onFinish={onFinish} layout="vertical">
+          <Form.Item name="name" rules={[{ required: true, message: t('register.nameRequired') }]}>
+            <Input prefix={<UserOutlined />} placeholder={t('register.name')} size="large" />
           </Form.Item>
 
           <Form.Item
             name="email"
             rules={[
               { required: true, message: t('register.emailRequired') },
-              { type: 'email', message: t('register.emailInvalid') }
+              { type: 'email', message: t('register.emailInvalid') },
             ]}
           >
-            <Input 
-              prefix={<MailOutlined />} 
-              placeholder={t('register.email')} 
-              size="large"
-            />
+            <Input prefix={<MailOutlined />} placeholder={t('register.email')} size="large" />
           </Form.Item>
 
           <Form.Item
             name="password"
             rules={[
               { required: true, message: t('register.passwordRequired') },
-              { min: 8, message: t('register.passwordMinLength') }
+              { min: 8, message: t('register.passwordMinLength') },
             ]}
           >
             <Input.Password
@@ -111,13 +98,7 @@ const Register: React.FC = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button 
-              type="primary" 
-              htmlType="submit" 
-              loading={loading}
-              block
-              size="large"
-            >
+            <Button type="primary" htmlType="submit" loading={loading} block size="large">
               {t('register.register')}
             </Button>
           </Form.Item>

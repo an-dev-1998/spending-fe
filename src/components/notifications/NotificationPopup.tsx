@@ -25,7 +25,7 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({
   // onMarkAllAsRead,
 }) => {
   const { t } = useTranslation();
-  const unreadCount = notifications.filter(n => !n.read).length;
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   const content = (
     <List
@@ -89,12 +89,7 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({
   );
 
   return (
-    <Popover
-      content={content}
-      title={title}
-      trigger="click"
-      placement="bottomRight"
-    >
+    <Popover content={content} title={title} trigger="click" placement="bottomRight">
       <Badge count={unreadCount} offset={[-2, 2]}>
         <BellOutlined style={{ fontSize: '20px', cursor: 'pointer' }} />
       </Badge>

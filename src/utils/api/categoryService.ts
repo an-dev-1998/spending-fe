@@ -12,7 +12,9 @@ class CategoryService {
   private readonly baseUrl = '/categories';
 
   async getCategories(page = 1, pageSize = 10): Promise<Category[] | PaginatedResponse<Category>> {
-    const response = await apiService.get<Category[] | PaginatedResponse<Category>>(`${this.baseUrl}?page=${page}&pageSize=${pageSize}`);
+    const response = await apiService.get<Category[] | PaginatedResponse<Category>>(
+      `${this.baseUrl}?page=${page}&pageSize=${pageSize}`
+    );
     return response;
   }
 
@@ -33,4 +35,4 @@ class CategoryService {
   }
 }
 
-export const categoryService = new CategoryService(); 
+export const categoryService = new CategoryService();

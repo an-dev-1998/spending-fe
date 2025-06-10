@@ -71,4 +71,4 @@ export const useGetIncomes = (): UseGetIncomesReturn => {
     handleTableChange,
     handleDateRangeChange,
   };
-}; 
+};

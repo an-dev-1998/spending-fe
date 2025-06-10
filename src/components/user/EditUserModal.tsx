@@ -55,4 +55,4 @@ const EditUserModal: React.FC<EditUserModalProps> = ({ user, visible, onClose, o
   );
 };
 
-export default EditUserModal; 
+export default EditUserModal;

@@ -17,7 +17,14 @@ import AppSelect from '../components/common/AppSelect';
 import '../assets/date-picker.css';
 
 const SpendingPage: React.FC = () => {
-  const { loading, spendings, pagination, handleTableChange, handleDateRangeChange, handleCategoryChange } = useGetSpendings();
+  const {
+    loading,
+    spendings,
+    pagination,
+    handleTableChange,
+    handleDateRangeChange,
+    handleCategoryChange,
+  } = useGetSpendings();
   const { categories } = useGetCategories();
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -48,43 +55,57 @@ const SpendingPage: React.FC = () => {
 
   const columns = [
     {
-      title: t("spending.description"),
+      title: t('spending.description'),
       dataIndex: 'description',
       key: 'description',
     },
     {
-      title: t("spending.amount"),
+      title: t('spending.amount'),
       dataIndex: 'amount',
       key: 'amount',
       render: (amount: string) => {
         const formattedAmount = parseFloat(amount).toLocaleString('en-US', {
           minimumFractionDigits: 0,
-          maximumFractionDigits: 0
+          maximumFractionDigits: 0,
         });
-        return <><Tag style={{ borderRadius: 32 }} color="gray">{formattedAmount} {CURRENCY}</Tag></>;
-      }
+        return (
+          <>
+            <Tag style={{ borderRadius: 32 }} color="gray">
+              {formattedAmount} {CURRENCY}
+            </Tag>
+          </>
+        );
+      },
     },
     {
-      title: t("spending.date"),
+      title: t('spending.date'),
       dataIndex: 'date',
       key: 'date',
       render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
     },
     {
-      title: t("spending.category.name"),
+      title: t('spending.category.name'),
       dataIndex: ['category', 'name'],
       key: 'category.name',
     },
-    ...(role !== 1 ? [{
-      title: t("spending.action"),
-      key: 'action',
-      render: (_: any, record: Spending) => (
-        <Space size="middle">
-          <a onClick={() => handleEdit(record)}><EditOutlined /></a>
-          <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
-        </Space>
-      ),
-    }] : []),
+    ...(role !== 1
+      ? [
+          {
+            title: t('spending.action'),
+            key: 'action',
+            render: (_: any, record: Spending) => (
+              <Space size="middle">
+                <a onClick={() => handleEdit(record)}>
+                  <EditOutlined />
+                </a>
+                <a onClick={() => handleDelete(record)}>
+                  <DeleteOutlined />
+                </a>
+              </Space>
+            ),
+          },
+        ]
+      : []),
   ];
 
   const handleEdit = (spending: Spending) => {
@@ -147,9 +168,9 @@ const SpendingPage: React.FC = () => {
       <div style={{ marginBottom: 16, display: 'flex', gap: '16px' }}>
         <DatePicker.RangePicker onChange={onDateRangeChange} />
         <AppSelect
-          options={categories.map(category => ({
+          options={categories.map((category) => ({
             label: category.name,
-            value: category.id
+            value: category.id,
           }))}
           onChange={onCategoryChange}
           value={selectedCategory}

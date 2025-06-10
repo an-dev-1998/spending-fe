@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { message } from 'antd';
+import { App } from 'antd';
 import { apiService } from '../utils/api/apiService';
 
 interface DashboardData {
@@ -15,9 +15,10 @@ export const useGetDashboards = () => {
     totalSpending: 0,
     totalIncome: 0,
     totalBalance: 0,
-    totalPerDay: 0
+    totalPerDay: 0,
   });
   const [error, setError] = useState<string | null>(null);
+  const { message } = App.useApp();
 
   const fetchDashboardData = async () => {
     setLoading(true);
@@ -44,4 +45,4 @@ export const useGetDashboards = () => {
     error,
     refetch: fetchDashboardData,
   };
-}; 
+};

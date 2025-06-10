@@ -24,7 +24,7 @@ const SettingPage: React.FC = () => {
         new_password: values.new_password,
         new_password_confirmation: values.new_password_confirmation,
       });
-      
+
       setSuccess(t('setting.passwordChangedSuccess'));
       form.resetFields();
       localStorage.removeItem('token');
@@ -41,13 +41,9 @@ const SettingPage: React.FC = () => {
       <Title level={2} style={{ textAlign: 'center', marginBottom: '2rem' }}>
         {t('setting.title')}
       </Title>
-      
+
       <Card title={t('setting.changePassword')} style={{ marginBottom: '2rem' }}>
-        <Form
-          form={form}
-          onFinish={handleSubmit}
-          layout="vertical"
-        >
+        <Form form={form} onFinish={handleSubmit} layout="vertical">
           <Form.Item
             name="current_password"
             label={t('setting.currentPassword')}
@@ -61,7 +57,7 @@ const SettingPage: React.FC = () => {
             label={t('setting.newPassword')}
             rules={[
               { required: true, message: t('setting.newPasswordRequired') },
-              { min: 8, message: t('setting.passwordMinLength') }
+              { min: 8, message: t('setting.passwordMinLength') },
             ]}
           >
             <Input.Password prefix={<LockOutlined />} />

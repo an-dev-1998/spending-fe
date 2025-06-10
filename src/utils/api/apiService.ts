@@ -32,19 +32,24 @@ class ApiService {
       const response: AxiosResponse<T> = await apiClient.post(url, data, config);
       console.log('ApiService: Raw response:', response);
       console.log('ApiService: Response data:', response.data);
-      
+
       const responseData = response.data as any;
-      if (responseData && typeof responseData === 'object' && 'data' in responseData && 'status' in responseData) {
+      if (
+        responseData &&
+        typeof responseData === 'object' &&
+        'data' in responseData &&
+        'status' in responseData
+      ) {
         return responseData.data;
       }
-      
+
       return response.data;
     } catch (error: any) {
       console.error('ApiService: Error in POST request:', {
         url,
         error: error.message,
         response: error.response?.data,
-        status: error.response?.status
+        status: error.response?.status,
       });
       this.handleError(error);
       throw error;
@@ -96,4 +101,4 @@ class ApiService {
   }
 }
 
-export const apiService = new ApiService(); 
+export const apiService = new ApiService();

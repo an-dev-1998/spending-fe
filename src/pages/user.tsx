@@ -22,23 +22,23 @@ const UserPage: React.FC = () => {
 
   const baseColumns = [
     {
-      title: t("user.name"),
+      title: t('user.name'),
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: t("user.email"),
+      title: t('user.email'),
       dataIndex: 'email',
       key: 'email',
     },
     {
-      title: t("user.createdAt"),
+      title: t('user.createdAt'),
       dataIndex: 'created_at',
       key: 'created_at',
       render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
     },
     {
-      title: t("user.updatedAt"),
+      title: t('user.updatedAt'),
       dataIndex: 'updated_at',
       key: 'updated_at',
       render: (date: string) => dayjs(date).format('DD-MM-YYYY'),
@@ -46,12 +46,16 @@ const UserPage: React.FC = () => {
   ];
 
   const actionColumn = {
-    title: t("user.action"),
+    title: t('user.action'),
     key: 'action',
     render: (_: any, record: User) => (
       <Space size="middle">
-        <a onClick={() => handleEdit(record)}><EditOutlined /></a>
-        <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
+        <a onClick={() => handleEdit(record)}>
+          <EditOutlined />
+        </a>
+        <a onClick={() => handleDelete(record)}>
+          <DeleteOutlined />
+        </a>
       </Space>
     ),
   };

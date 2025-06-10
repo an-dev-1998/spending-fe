@@ -43,8 +43,12 @@ const CategoryPage: React.FC = () => {
     key: 'action',
     render: (_: any, record: Category) => (
       <Space size="middle">
-        <a onClick={() => handleEdit(record)}><EditOutlined /></a>
-        <a onClick={() => handleDelete(record)}><DeleteOutlined /></a>
+        <a onClick={() => handleEdit(record)}>
+          <EditOutlined />
+        </a>
+        <a onClick={() => handleDelete(record)}>
+          <DeleteOutlined />
+        </a>
       </Space>
     ),
   };

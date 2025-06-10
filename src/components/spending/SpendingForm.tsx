@@ -19,7 +19,7 @@ interface Category {
 }
 const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
   const { t } = useTranslation();
-  
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
 
@@ -42,8 +42,9 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
     if (initialValues) {
       const formattedValues = {
         ...initialValues,
-        date: initialValues.date ? dayjs(initialValues.date) : '2025-12-12'
+        date: initialValues.date ? dayjs(initialValues.date) : null,
       };
+      console.log(formattedValues);
       form.setFieldsValue(formattedValues);
     }
   }, [initialValues, form]);
@@ -62,11 +63,7 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
   }));
 
   return (
-    <Form
-      form={form}
-      layout="vertical"
-      initialValues={initialValues}
-    >
+    <Form form={form} layout="vertical" initialValues={initialValues}>
       <Form.Item
         name="category_id"
         label={t('spending.categoryId')}
@@ -79,21 +76,10 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
           style={{ width: '100%' }}
         />
       </Form.Item>
-      <Form.Item
-        name="date"
-        label={t('spending.date')}
-        style={{ width: '50%' }}
-      >
-        <DatePicker 
-          style={{ width: '100%' }}
-          format="YYYY-MM-DD"
-          showTime={false}
-        />
+      <Form.Item name="date" label={t('spending.date')} style={{ width: '50%' }}>
+        <DatePicker style={{ width: '100%' }} format="YYYY-MM-DD" showTime={false} />
       </Form.Item>
-      <Form.Item
-        name="description"
-        label={t('spending.description')}
-      >
+      <Form.Item name="description" label={t('spending.description')}>
         <Input.TextArea rows={4} placeholder={t('spending.description')} />
       </Form.Item>
       <Form.Item
@@ -128,4 +114,4 @@ const SpendingForm: React.FC<SpendingFormProps> = ({ form, initialValues }) => {
   );
 };
 
-export default SpendingForm; 
+export default SpendingForm;

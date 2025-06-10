@@ -49,7 +49,7 @@ export interface SpendingByDateResponse {
 export const analyticService = {
   getSpendingAnalytics: async (params?: SpendingAnalyticsParams): Promise<AnalyticsData[]> => {
     const queryParams = new URLSearchParams();
-    
+
     if (params?.startDate) {
       queryParams.append('start_date', params.startDate.format('YYYY-MM-DD'));
     }
@@ -62,12 +62,12 @@ export const analyticService = {
 
     const queryString = queryParams.toString();
     const url = `/analytics/spending${queryString ? `?${queryString}` : ''}`;
-    
+
     return apiService.get<AnalyticsData[]>(url);
   },
   getIncomeAnalytics: async (params?: IncomeAnalyticsParams): Promise<AnalyticsData[]> => {
     const queryParams = new URLSearchParams();
-    
+
     if (params?.startDate) {
       queryParams.append('start_date', params.startDate.format('YYYY-MM-DD'));
     }
@@ -94,5 +94,5 @@ export const analyticService = {
     const url = `/analytics/spending-by-date${queryString ? `?${queryString}` : ''}`;
 
     return apiService.get<SpendingByDateResponse>(url);
-  }
-}; 
+  },
+};
